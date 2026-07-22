@@ -1,44 +1,32 @@
 import express from 'express';
 import multer from 'multer';
-import path from 'path';
+import { v2 as cloudinary } from 'cloudinary';
+import { CloudinaryStorage } from 'multer-storage-cloudinary';
 import { protect, admin } from '../middleware/auth.js';
 
 const router = express.Router();
 
-const storage = multer.diskStorage({
-  destination(req, file, cb) {
-    cb(null, 'uploads/');
-  },
-  filename(req, file, cb) {
-    cb(null, `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`);
-  },
-});
-
-function checkFileType(file, cb) {
-  const filetypes = /jpg|jpeg|png|webp/;
-  const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
-  const mimetype = filetypes.test(file.mimetype);
-
-  if (extname && mimetype) {
-    return cb(null, true);
-  } else {
-    cb('Images only!');
-  }
-}
-
-const upload = multer({
-  storage,
-  fileFilter: function (req, file, cb) {
-    checkFileType(file, cb);
+// Configure Cloudinary storage. 
+// It automatically picks up the CLOUDINARY_URL environment variable.
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'luora-jewellery',
+    allowedFormats: ['jpg', 'png', 'jpeg', 'webp'],
   },
 });
+
+const upload = multer({ storage: storage });
 
 // Allow up to 10 images at once
 router.post('/', protect, admin, upload.array('images', 10), (req, res) => {
   if (!req.files || req.files.length === 0) {
     return res.status(400).json({ message: 'No file uploaded' });
   }
-  const filePaths = req.files.map((file) => `/${file.path.replace(/\\/g, '/')}`);
+  
+  // With CloudinaryStorage, file.path is the full secure URL to the image on Cloudinary
+  const filePaths = req.files.map((file) => file.path);
+  
   res.json({ paths: filePaths, message: 'Images uploaded successfully' });
 });
 
