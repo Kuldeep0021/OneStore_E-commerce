@@ -38,17 +38,17 @@ const Home = () => {
   return (
     <div className="bg-white">
       {/* Full-width Hero Section */}
-      <div className="relative bg-gradient-to-r from-blue-600 to-indigo-700 py-32 w-full">
+      <div className="relative bg-gradient-to-r from-gray-900 to-black py-32 w-full">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <h1 className="text-5xl md:text-6xl font-sans font-bold text-white tracking-tight mb-6">
             Welcome to OneStore
           </h1>
-          <p className="text-xl text-blue-100 font-light tracking-wide max-w-2xl mx-auto mb-10">
+          <p className="text-xl text-gray-300 font-light tracking-wide max-w-2xl mx-auto mb-10">
             Your one-stop shop for everything! Discover amazing deals on fresh groceries, electronics, books, and daily essentials.
           </p>
           <a 
             href="#categories" 
-            className="inline-block bg-white text-blue-700 font-semibold px-8 py-4 rounded-full shadow-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300"
+            className="inline-block bg-white text-black font-semibold px-8 py-4 rounded-full shadow-lg hover:bg-gray-200 hover:scale-105 transition-all duration-300"
           >
             Start Shopping
           </a>
