@@ -26,7 +26,7 @@ const AdminUsers = () => {
             <li key={user._id}>
               <div className="px-4 py-4 sm:px-6">
                 <div className="flex items-center justify-between">
-                  <p className="text-sm font-medium text-luora-primary truncate">{user.name}</p>
+                  <p className="text-sm font-medium text-brand-primary truncate">{user.name}</p>
                   <div className="ml-2 flex-shrink-0 flex">
                     <p className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${user.role === 'admin' ? 'bg-purple-100 text-purple-800' : 'bg-green-100 text-green-800'}`}>
                       {user.role}

@@ -34,7 +34,7 @@ const ProfilePage = () => {
         {/* Profile Sidebar */}
         <div className="w-full md:w-1/3 bg-gray-50 p-8">
           <div className="flex flex-col items-center mb-8">
-            <div className="w-24 h-24 bg-luora-accent rounded-full flex items-center justify-center text-white mb-4">
+            <div className="w-24 h-24 bg-brand-accent rounded-full flex items-center justify-center text-white mb-4">
               <UserIcon className="w-12 h-12" />
             </div>
             <h2 className="text-2xl font-serif">{user.name}</h2>
@@ -52,16 +52,16 @@ const ProfilePage = () => {
         {/* Order History */}
         <div className="flex-1">
           <div className="flex items-center mb-8">
-            <Package className="w-6 h-6 mr-3 text-luora-accent" />
+            <Package className="w-6 h-6 mr-3 text-brand-accent" />
             <h2 className="text-2xl font-serif uppercase tracking-widest">Order History</h2>
           </div>
 
           {loading ? (
-            <div className="flex justify-center py-10"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-luora-accent"></div></div>
+            <div className="flex justify-center py-10"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-brand-accent"></div></div>
           ) : orders.length === 0 ? (
             <div className="bg-gray-50 p-8 text-center">
               <p className="text-gray-500 font-light mb-4">You have not placed any orders yet.</p>
-              <a href="/#categories" className="text-luora-accent uppercase tracking-widest text-xs font-bold hover:underline">Start Shopping</a>
+              <a href="/#categories" className="text-brand-accent uppercase tracking-widest text-xs font-bold hover:underline">Start Shopping</a>
             </div>
           ) : (
             <div className="space-y-6">
@@ -78,7 +78,7 @@ const ProfilePage = () => {
                     </div>
                     <div className="mt-4 md:mt-0">
                       <p className="text-xs text-gray-500 uppercase tracking-widest mb-1">Total</p>
-                      <p className="font-medium text-sm text-luora-accent">₹{order.totalAmount.toLocaleString()}</p>
+                      <p className="font-medium text-sm text-brand-accent">₹{order.totalAmount.toLocaleString()}</p>
                     </div>
                     <div className="mt-4 md:mt-0">
                       <p className="text-xs text-gray-500 uppercase tracking-widest mb-1">Status</p>

@@ -7,17 +7,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        'luora-bg': '#ffffff',
-        'luora-primary': '#111111',
-        'luora-secondary': '#f9f9f9',
-        'luora-accent': '#D4AF37',
-        'luora-gold-dark': '#B8860B',
-        'luora-text': '#333333',
-        'luora-muted': '#888888',
+        'brand-bg': '#ffffff',
+        'brand-primary': '#2563eb',
+        'brand-secondary': '#f3f4f6',
+        'brand-accent': '#f59e0b',
+        'brand-gold-dark': '#d97706',
+        'brand-text': '#1f2937',
+        'brand-muted': '#6b7280',
       },
       fontFamily: {
-        serif: ['"Playfair Display"', 'serif'],
         sans: ['"Inter"', 'sans-serif'],
+        serif: ['"Inter"', 'sans-serif'], // Fallback serif to sans for generic look
       }
     },
   },

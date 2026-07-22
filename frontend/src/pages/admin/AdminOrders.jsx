@@ -72,7 +72,7 @@ const AdminOrders = () => {
                           <select
                             value={order.orderStatus}
                             onChange={(e) => handleStatusChange(order._id, e.target.value)}
-                            className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-luora-accent focus:border-luora-accent sm:text-sm rounded-md"
+                            className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-brand-accent focus:border-brand-accent sm:text-sm rounded-md"
                           >
                             <option value="Pending">Pending</option>
                             <option value="Shipped">Shipped</option>

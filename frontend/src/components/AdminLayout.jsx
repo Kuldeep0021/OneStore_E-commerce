@@ -23,9 +23,9 @@ const AdminLayout = () => {
   return (
     <div className="flex h-screen bg-gray-100 overflow-hidden">
       {/* Sidebar */}
-      <div className="w-64 bg-luora-primary text-white flex flex-col">
+      <div className="w-64 bg-brand-primary text-white flex flex-col">
         <div className="flex items-center justify-center h-16 border-b border-gray-700">
-          <span className="font-serif text-2xl font-bold tracking-wider">LUORA ADMIN</span>
+          <span className="font-serif text-2xl font-bold tracking-wider">ONESTORE ADMIN</span>
         </div>
         <div className="flex-1 overflow-y-auto py-4">
           <nav className="space-y-1 px-2">
@@ -62,7 +62,7 @@ const AdminLayout = () => {
             <h1 className="text-xl font-semibold text-gray-800">Admin Panel</h1>
           </div>
           <div className="flex items-center">
-            <Link to="/" className="text-sm text-gray-500 hover:text-luora-primary">Return to Storefront</Link>
+            <Link to="/" className="text-sm text-gray-500 hover:text-brand-primary">Return to Storefront</Link>
           </div>
         </div>
 

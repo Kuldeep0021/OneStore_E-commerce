@@ -205,7 +205,7 @@ const AdminProducts = () => {
                           handleLivePriceUpdate(product, e.target.value);
                         }
                       }}
-                      className="w-24 px-2 py-1 border border-gray-300 rounded text-sm focus:outline-none focus:border-luora-accent"
+                      className="w-24 px-2 py-1 border border-gray-300 rounded text-sm focus:outline-none focus:border-brand-accent"
                     />
                   </div>
                   
@@ -264,7 +264,7 @@ const AdminProducts = () => {
                       <input type="number" value={formData.stockQuantity} onChange={(e) => setFormData({...formData, stockQuantity: e.target.value})} className="mt-1 input-field" min="0" required />
                     </div>
                     <div className="flex items-center mt-6">
-                      <input type="checkbox" id="isActive" checked={formData.isActive} onChange={(e) => setFormData({...formData, isActive: e.target.checked})} className="h-4 w-4 text-luora-primary focus:ring-luora-accent border-gray-300 rounded" />
+                      <input type="checkbox" id="isActive" checked={formData.isActive} onChange={(e) => setFormData({...formData, isActive: e.target.checked})} className="h-4 w-4 text-brand-primary focus:ring-brand-accent border-gray-300 rounded" />
                       <label htmlFor="isActive" className="ml-2 block text-sm text-gray-900">Active (Visible on store)</label>
                     </div>
                     
@@ -272,7 +272,7 @@ const AdminProducts = () => {
                     <div className="sm:col-span-2">
                       <label className="block text-sm font-medium text-gray-700 mb-2">Product Images (Drag & Drop or Click)</label>
                       <div 
-                        className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer hover:border-luora-accent"
+                        className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer hover:border-brand-accent"
                         onDragOver={(e) => e.preventDefault()}
                         onDrop={handleDrop}
                         onClick={() => fileInputRef.current?.click()}
@@ -280,7 +280,7 @@ const AdminProducts = () => {
                         <div className="space-y-1 text-center">
                           <UploadCloud className="mx-auto h-12 w-12 text-gray-400" />
                           <div className="flex text-sm text-gray-600 justify-center">
-                            <span className="relative cursor-pointer bg-white rounded-md font-medium text-luora-accent hover:text-luora-primary">
+                            <span className="relative cursor-pointer bg-white rounded-md font-medium text-brand-accent hover:text-brand-primary">
                               <span>Upload files</span>
                               <input ref={fileInputRef} type="file" className="sr-only" onChange={handleFileChange} accept="image/*" multiple />
                             </span>
@@ -314,7 +314,7 @@ const AdminProducts = () => {
                   </div>
                 </div>
                 <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                  <button type="submit" disabled={loading} className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-luora-primary text-base font-medium text-white hover:bg-black sm:ml-3 sm:w-auto sm:text-sm">
+                  <button type="submit" disabled={loading} className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-brand-primary text-base font-medium text-white hover:bg-black sm:ml-3 sm:w-auto sm:text-sm">
                     {loading ? 'Saving...' : 'Save'}
                   </button>
                   <button type="button" onClick={closeModal} className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">

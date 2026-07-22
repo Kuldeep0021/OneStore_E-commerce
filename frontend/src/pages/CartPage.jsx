@@ -45,11 +45,11 @@ const CartPage = () => {
 
                       <div className="mt-4 sm:mt-0 sm:pr-9 flex items-center">
                         <div className="flex items-center border border-gray-300 rounded-md">
-                          <button onClick={() => updateQuantity(item.product._id, -1)} className="p-2 text-gray-600 hover:text-luora-primary">
+                          <button onClick={() => updateQuantity(item.product._id, -1)} className="p-2 text-gray-600 hover:text-brand-primary">
                             <Minus className="w-4 h-4" />
                           </button>
                           <span className="px-4 text-gray-700">{item.quantity}</span>
-                          <button onClick={() => updateQuantity(item.product._id, 1)} className="p-2 text-gray-600 hover:text-luora-primary" disabled={item.quantity >= item.product.stockQuantity}>
+                          <button onClick={() => updateQuantity(item.product._id, 1)} className="p-2 text-gray-600 hover:text-brand-primary" disabled={item.quantity >= item.product.stockQuantity}>
                             <Plus className="w-4 h-4" />
                           </button>
                         </div>

@@ -20,17 +20,17 @@ const Navbar = () => {
           
           {/* Left: Navigation Links */}
           <div className="flex-1 flex items-center space-x-8 hidden md:flex">
-            <Link to="/" className="text-sm tracking-widest uppercase text-luora-text hover:text-luora-accent transition-colors">Home</Link>
-            <a href="/#categories" className="text-sm tracking-widest uppercase text-luora-text hover:text-luora-accent transition-colors">Collections</a>
+            <Link to="/" className="text-sm tracking-widest uppercase text-brand-text hover:text-brand-accent transition-colors">Home</Link>
+            <a href="/#categories" className="text-sm tracking-widest uppercase text-brand-text hover:text-brand-accent transition-colors">Collections</a>
             {user && user.role === 'admin' && (
-              <Link to="/admin" className="text-sm tracking-widest uppercase text-luora-text hover:text-luora-accent transition-colors">Admin</Link>
+              <Link to="/admin" className="text-sm tracking-widest uppercase text-brand-text hover:text-brand-accent transition-colors">Admin</Link>
             )}
           </div>
 
           {/* Center: Brand Logo */}
           <div className="flex-1 flex justify-center">
             <Link to="/" className="flex items-center">
-              <span className="font-serif text-3xl md:text-4xl font-bold text-luora-primary tracking-[0.2em] uppercase">Luora</span>
+              <span className="font-serif text-3xl md:text-4xl font-bold text-brand-primary tracking-[0.2em] uppercase">OneStore</span>
             </Link>
           </div>
 
@@ -39,27 +39,27 @@ const Navbar = () => {
             {user ? (
               <div className="relative flex items-center space-x-6">
                 <span className="text-sm text-gray-700 hidden sm:block tracking-wide">Welcome, {user.name}</span>
-                <Link to="/profile" className="text-luora-text hover:text-luora-accent transition-colors" title="My Profile">
+                <Link to="/profile" className="text-brand-text hover:text-brand-accent transition-colors" title="My Profile">
                   <User className="h-5 w-5" strokeWidth={1.5} />
                 </Link>
-                <button onClick={handleLogout} className="text-luora-text hover:text-luora-accent transition-colors" title="Log Out">
+                <button onClick={handleLogout} className="text-brand-text hover:text-brand-accent transition-colors" title="Log Out">
                   <LogOut className="h-5 w-5" strokeWidth={1.5} />
                 </button>
               </div>
             ) : (
-              <Link to="/login" className="text-luora-text hover:text-luora-accent transition-colors">
+              <Link to="/login" className="text-brand-text hover:text-brand-accent transition-colors">
                 <User className="h-5 w-5" strokeWidth={1.5} />
               </Link>
             )}
 
-            <Link to="/wishlist" className="text-luora-text hover:text-luora-accent transition-colors">
+            <Link to="/wishlist" className="text-brand-text hover:text-brand-accent transition-colors">
               <Heart className="h-5 w-5" strokeWidth={1.5} />
             </Link>
 
-            <Link to="/cart" className="text-luora-text hover:text-luora-accent transition-colors relative">
+            <Link to="/cart" className="text-brand-text hover:text-brand-accent transition-colors relative">
               <ShoppingCart className="h-5 w-5" strokeWidth={1.5} />
               {cartItemsCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-luora-accent text-white text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center">
+                <span className="absolute -top-2 -right-2 bg-brand-accent text-white text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center">
                   {cartItemsCount}
                 </span>
               )}

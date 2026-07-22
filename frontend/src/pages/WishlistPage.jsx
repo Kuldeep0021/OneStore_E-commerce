@@ -39,14 +39,14 @@ const WishlistPage = () => {
     addToCart(product);
   };
 
-  if (loading) return <div className="min-h-screen flex items-center justify-center"><div className="animate-spin rounded-full h-10 w-10 border-b-2 border-luora-accent"></div></div>;
+  if (loading) return <div className="min-h-screen flex items-center justify-center"><div className="animate-spin rounded-full h-10 w-10 border-b-2 border-brand-accent"></div></div>;
 
   if (!user) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 px-4">
         <h2 className="text-3xl font-serif mb-4">Please log in</h2>
         <p className="text-gray-500 mb-8 font-light">You need to be logged in to view your wishlist.</p>
-        <Link to="/login" className="bg-luora-accent text-white px-8 py-3 uppercase tracking-widest text-sm hover:bg-luora-primary transition-colors">Log In</Link>
+        <Link to="/login" className="bg-brand-accent text-white px-8 py-3 uppercase tracking-widest text-sm hover:bg-brand-primary transition-colors">Log In</Link>
       </div>
     );
   }
@@ -58,7 +58,7 @@ const WishlistPage = () => {
       {wishlist.length === 0 ? (
         <div className="text-center py-16">
           <p className="text-gray-500 mb-8 font-light text-lg">Your wishlist is empty.</p>
-          <Link to="/#categories" className="bg-transparent border border-luora-primary text-luora-primary px-8 py-3 uppercase tracking-widest text-sm hover:bg-luora-primary hover:text-white transition-colors">
+          <Link to="/#categories" className="bg-transparent border border-brand-primary text-brand-primary px-8 py-3 uppercase tracking-widest text-sm hover:bg-brand-primary hover:text-white transition-colors">
             Continue Shopping
           </Link>
         </div>
@@ -74,10 +74,10 @@ const WishlistPage = () => {
                 />
               </Link>
               <div className="text-center">
-                <h3 className="text-sm uppercase tracking-widest text-luora-text mb-2 font-medium truncate px-2">{product.name}</h3>
-                <p className="text-luora-accent font-serif italic text-lg mb-4">₹{product.price.toLocaleString()}</p>
+                <h3 className="text-sm uppercase tracking-widest text-brand-text mb-2 font-medium truncate px-2">{product.name}</h3>
+                <p className="text-brand-accent font-serif italic text-lg mb-4">₹{product.price.toLocaleString()}</p>
                 <div className="flex justify-center space-x-4">
-                  <button onClick={() => handleAddToCart(product)} className="text-gray-500 hover:text-luora-accent transition-colors" title="Add to Cart">
+                  <button onClick={() => handleAddToCart(product)} className="text-gray-500 hover:text-brand-accent transition-colors" title="Add to Cart">
                     <ShoppingCart className="h-5 w-5" />
                   </button>
                   <button onClick={() => handleRemove(product._id)} className="text-gray-500 hover:text-red-500 transition-colors" title="Remove">

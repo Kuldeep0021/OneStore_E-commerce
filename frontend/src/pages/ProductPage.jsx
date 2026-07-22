@@ -63,7 +63,7 @@ const ProductPage = () => {
     }
   };
 
-  if (loading) return <div className="min-h-screen flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-luora-accent"></div></div>;
+  if (loading) return <div className="min-h-screen flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-accent"></div></div>;
   if (!product) return <div className="text-center py-20">Product not found.</div>;
 
   const isWishlisted = wishlist.some(item => (item._id || item) === id);
@@ -78,7 +78,7 @@ const ProductPage = () => {
               <button 
                 key={idx} 
                 onClick={() => setMainImage(img)}
-                className={`flex-shrink-0 w-20 h-20 overflow-hidden border-2 transition-all ${mainImage === img ? 'border-luora-accent scale-105' : 'border-transparent'}`}
+                className={`flex-shrink-0 w-20 h-20 overflow-hidden border-2 transition-all ${mainImage === img ? 'border-brand-accent scale-105' : 'border-transparent'}`}
               >
                 <img src={getImageUrl(img)} alt="" className="w-full h-full object-cover" />
               </button>
@@ -90,7 +90,7 @@ const ProductPage = () => {
             ) : (
               <div className="w-full h-full flex items-center justify-center">No Image</div>
             )}
-            <button onClick={handleWishlist} className={`absolute top-4 right-4 p-3 rounded-full shadow transition-colors ${isWishlisted ? 'bg-luora-accent text-white' : 'bg-white text-gray-400 hover:text-luora-accent'}`}>
+            <button onClick={handleWishlist} className={`absolute top-4 right-4 p-3 rounded-full shadow transition-colors ${isWishlisted ? 'bg-brand-accent text-white' : 'bg-white text-gray-400 hover:text-brand-accent'}`}>
               <Heart className="w-6 h-6" fill={isWishlisted ? "currentColor" : "none"} />
             </button>
           </div>
@@ -98,10 +98,10 @@ const ProductPage = () => {
 
         {/* Product Info */}
         <div className="mt-10 px-4 sm:px-0 lg:mt-0">
-          <h1 className="text-4xl font-serif text-luora-primary tracking-wide mb-2 uppercase">{product.name}</h1>
+          <h1 className="text-4xl font-serif text-brand-primary tracking-wide mb-2 uppercase">{product.name}</h1>
           
           <div className="flex items-center mb-6">
-            <div className="flex items-center text-luora-accent">
+            <div className="flex items-center text-brand-accent">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className={`w-4 h-4 ${i < product.rating ? 'fill-current' : 'text-gray-300'}`} />
               ))}
@@ -109,7 +109,7 @@ const ProductPage = () => {
             <span className="ml-2 text-sm text-gray-500 font-light">({product.numReviews} Reviews)</span>
           </div>
 
-          <p className="text-3xl text-luora-accent font-serif italic mb-8">₹{product.price.toLocaleString()}</p>
+          <p className="text-3xl text-brand-accent font-serif italic mb-8">₹{product.price.toLocaleString()}</p>
           
           <div className="text-base text-gray-600 font-light leading-relaxed mb-10" dangerouslySetInnerHTML={{ __html: product.description }} />
 
@@ -119,7 +119,7 @@ const ProductPage = () => {
               disabled={product.stockQuantity === 0}
               onClick={handleAddToCart}
               className={`flex-1 py-4 uppercase tracking-widest text-sm font-bold text-white transition-colors
-                ${product.stockQuantity === 0 ? 'bg-gray-400 cursor-not-allowed' : added ? 'bg-green-600' : 'bg-luora-primary hover:bg-black'}`}
+                ${product.stockQuantity === 0 ? 'bg-gray-400 cursor-not-allowed' : added ? 'bg-green-600' : 'bg-brand-primary hover:bg-black'}`}
             >
               {added ? 'Added to Cart!' : 'Add to Cart'}
             </button>
@@ -149,7 +149,7 @@ const ProductPage = () => {
                   <div key={review._id} className="border-b border-gray-100 pb-6">
                     <div className="flex items-center mb-2">
                       <span className="font-bold mr-4">{review.name}</span>
-                      <div className="flex text-luora-accent">
+                      <div className="flex text-brand-accent">
                         {[...Array(5)].map((_, i) => (
                           <Star key={i} className={`w-3 h-3 ${i < review.rating ? 'fill-current' : 'text-gray-300'}`} />
                         ))}
@@ -183,10 +183,10 @@ const ProductPage = () => {
                   <label className="block text-sm text-gray-600 mb-2">Comment</label>
                   <textarea value={comment} onChange={(e) => setComment(e.target.value)} rows="4" className="w-full border-gray-300 p-2 font-light text-sm" required></textarea>
                 </div>
-                <button type="submit" className="bg-luora-primary text-white px-6 py-3 uppercase tracking-widest text-xs hover:bg-black transition-colors">Submit Review</button>
+                <button type="submit" className="bg-brand-primary text-white px-6 py-3 uppercase tracking-widest text-xs hover:bg-black transition-colors">Submit Review</button>
               </form>
             ) : (
-              <p className="text-gray-500 font-light text-sm">Please <a href="/login" className="text-luora-accent hover:underline">sign in</a> to write a review.</p>
+              <p className="text-gray-500 font-light text-sm">Please <a href="/login" className="text-brand-accent hover:underline">sign in</a> to write a review.</p>
             )}
           </div>
         </div>

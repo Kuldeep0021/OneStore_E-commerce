@@ -38,30 +38,26 @@ const Home = () => {
   return (
     <div className="bg-white">
       {/* Full-width Hero Section */}
-      <div className="relative h-screen min-h-[600px] w-full">
-        <div className="absolute inset-0">
-          <img 
-            src="/hero.jpg" 
-            alt="Hero Jewellery" 
-            className="w-full h-full object-cover"
-          />
-          {/* Subtle gradient overlay to make text pop */}
-          <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-        </div>
-        
-        <div className="relative h-full flex flex-col items-center justify-center text-center px-4">
-          <h1 className="text-5xl md:text-7xl font-serif text-white tracking-wide mb-6">
-            Elegance in Every Detail
+      <div className="relative bg-gradient-to-r from-blue-600 to-indigo-700 py-32 w-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+          <h1 className="text-5xl md:text-6xl font-sans font-bold text-white tracking-tight mb-6">
+            Welcome to OneStore
           </h1>
-          <p className="text-lg md:text-xl text-gray-200 font-light tracking-wider max-w-2xl mb-10">
-            Discover our curated collection of fine jewellery. Timeless pieces crafted for the modern woman.
+          <p className="text-xl text-blue-100 font-light tracking-wide max-w-2xl mx-auto mb-10">
+            Your one-stop shop for everything! Discover amazing deals on fresh groceries, electronics, books, and daily essentials.
           </p>
           <a 
             href="#categories" 
-            className="bg-transparent border border-white text-white px-10 py-4 uppercase tracking-widest text-sm hover:bg-white hover:text-luora-primary transition-colors duration-300"
+            className="inline-block bg-white text-blue-700 font-semibold px-8 py-4 rounded-full shadow-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300"
           >
-            Explore Collection
+            Start Shopping
           </a>
+        </div>
+        
+        {/* Decorative background shapes */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-20">
+          <div className="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-white blur-3xl"></div>
+          <div className="absolute top-32 right-12 w-64 h-64 rounded-full bg-white blur-3xl"></div>
         </div>
       </div>
 
@@ -69,11 +65,11 @@ const Home = () => {
       <div id="categories" className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-serif tracking-wider uppercase mb-4">Our Categories</h2>
-          <div className="h-[1px] w-24 bg-luora-accent mx-auto"></div>
+          <div className="h-[1px] w-24 bg-brand-accent mx-auto"></div>
         </div>
 
         {loadingCats ? (
-          <div className="flex justify-center py-10"><div className="animate-spin rounded-full h-10 w-10 border-b-2 border-luora-accent"></div></div>
+          <div className="flex justify-center py-10"><div className="animate-spin rounded-full h-10 w-10 border-b-2 border-brand-accent"></div></div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {categories.map((category) => (
@@ -95,15 +91,15 @@ const Home = () => {
       </div>
 
       {/* Featured Products / Best Sellers */}
-      <div className="bg-luora-secondary py-24">
+      <div className="bg-brand-secondary py-24">
         <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-serif tracking-wider uppercase mb-4">New Arrivals</h2>
-            <div className="h-[1px] w-24 bg-luora-accent mx-auto"></div>
+            <div className="h-[1px] w-24 bg-brand-accent mx-auto"></div>
           </div>
 
           {loadingProds ? (
-            <div className="flex justify-center py-10"><div className="animate-spin rounded-full h-10 w-10 border-b-2 border-luora-accent"></div></div>
+            <div className="flex justify-center py-10"><div className="animate-spin rounded-full h-10 w-10 border-b-2 border-brand-accent"></div></div>
           ) : products.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {products.slice(0, 4).map((product) => (
@@ -116,8 +112,8 @@ const Home = () => {
                     />
                   </div>
                   <div className="text-center">
-                    <h3 className="text-sm uppercase tracking-widest text-luora-text mb-2 font-medium">{product.name}</h3>
-                    <p className="text-luora-accent font-serif italic text-lg">₹{product.price.toLocaleString()}</p>
+                    <h3 className="text-sm uppercase tracking-widest text-brand-text mb-2 font-medium">{product.name}</h3>
+                    <p className="text-brand-accent font-serif italic text-lg">₹{product.price.toLocaleString()}</p>
                   </div>
                 </Link>
               ))}

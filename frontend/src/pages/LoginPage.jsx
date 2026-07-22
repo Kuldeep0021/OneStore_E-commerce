@@ -88,7 +88,7 @@ const LoginPage = () => {
         </form>
         
         <div className="text-center mt-4">
-          <button onClick={() => setIsLogin(!isLogin)} className="text-sm font-medium text-luora-primary hover:underline">
+          <button onClick={() => setIsLogin(!isLogin)} className="text-sm font-medium text-brand-primary hover:underline">
             {isLogin ? "Don't have an account? Sign up" : "Already have an account? Sign in"}
           </button>
         </div>

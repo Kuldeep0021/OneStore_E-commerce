@@ -55,14 +55,14 @@ const CategoryPage = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div className="text-center mb-16">
-        <h1 className="text-4xl font-serif mb-4 uppercase tracking-wider text-luora-primary">{category?.name || 'Category'}</h1>
-        <div className="h-[1px] w-24 bg-luora-accent mx-auto"></div>
+        <h1 className="text-4xl font-serif mb-4 uppercase tracking-wider text-brand-primary">{category?.name || 'Category'}</h1>
+        <div className="h-[1px] w-24 bg-brand-accent mx-auto"></div>
       </div>
 
       <div className="flex flex-col md:flex-row gap-12">
         {/* Sidebar Filters */}
         <div className="w-full md:w-64 flex-shrink-0">
-          <div className="flex items-center mb-6 text-luora-primary">
+          <div className="flex items-center mb-6 text-brand-primary">
             <Filter className="w-5 h-5 mr-2" />
             <h2 className="text-lg font-serif uppercase tracking-widest">Filter</h2>
           </div>
@@ -72,7 +72,7 @@ const CategoryPage = () => {
             <select 
               value={sort} 
               onChange={(e) => setSort(e.target.value)}
-              className="w-full border border-gray-300 p-3 font-light text-sm focus:border-luora-accent focus:outline-none"
+              className="w-full border border-gray-300 p-3 font-light text-sm focus:border-brand-accent focus:outline-none"
             >
               <option value="newest">Newest Arrivals</option>
               <option value="price_asc">Price: Low to High</option>
@@ -88,14 +88,14 @@ const CategoryPage = () => {
                 placeholder="Min ₹" 
                 value={minPrice}
                 onChange={(e) => setMinPrice(e.target.value)}
-                className="w-full border border-gray-300 p-2 font-light text-sm focus:border-luora-accent focus:outline-none"
+                className="w-full border border-gray-300 p-2 font-light text-sm focus:border-brand-accent focus:outline-none"
               />
               <input 
                 type="number" 
                 placeholder="Max ₹" 
                 value={maxPrice}
                 onChange={(e) => setMaxPrice(e.target.value)}
-                className="w-full border border-gray-300 p-2 font-light text-sm focus:border-luora-accent focus:outline-none"
+                className="w-full border border-gray-300 p-2 font-light text-sm focus:border-brand-accent focus:outline-none"
               />
             </div>
           </div>
@@ -104,7 +104,7 @@ const CategoryPage = () => {
         {/* Product Grid */}
         <div className="flex-1">
           {loading ? (
-             <div className="flex justify-center py-20"><div className="animate-spin rounded-full h-10 w-10 border-b-2 border-luora-accent"></div></div>
+             <div className="flex justify-center py-20"><div className="animate-spin rounded-full h-10 w-10 border-b-2 border-brand-accent"></div></div>
           ) : products.length === 0 ? (
             <div className="text-center text-gray-500 py-12 font-light">No products match your criteria.</div>
           ) : (
@@ -123,8 +123,8 @@ const CategoryPage = () => {
                     )}
                   </div>
                   <div className="text-center px-2">
-                    <h3 className="text-xs uppercase tracking-widest text-luora-text mb-2 font-medium truncate">{product.name}</h3>
-                    <p className="text-luora-accent font-serif italic text-lg">₹{product.price.toLocaleString()}</p>
+                    <h3 className="text-xs uppercase tracking-widest text-brand-text mb-2 font-medium truncate">{product.name}</h3>
+                    <p className="text-brand-accent font-serif italic text-lg">₹{product.price.toLocaleString()}</p>
                   </div>
                 </Link>
               ))}

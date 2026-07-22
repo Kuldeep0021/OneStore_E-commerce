@@ -33,13 +33,13 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-luora-primary text-white pt-20 pb-10 mt-auto">
+    <footer className="bg-brand-primary text-white pt-20 pb-10 mt-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Newsletter Section */}
         <div className="flex flex-col md:flex-row justify-between items-center border-b border-gray-800 pb-16 mb-16">
           <div className="mb-8 md:mb-0 text-center md:text-left md:max-w-lg">
-            <h3 className="font-serif text-3xl mb-4 tracking-wider">Join The LUORA Club</h3>
+            <h3 className="font-serif text-3xl mb-4 tracking-wider">Join The ONESTORE Club</h3>
             <p className="text-gray-400 font-light text-sm">Subscribe to receive updates, access to exclusive deals, and more.</p>
           </div>
           <form onSubmit={handleSubscribe} className="w-full md:w-auto flex flex-col sm:flex-row gap-4 relative">
@@ -51,7 +51,7 @@ const Footer = () => {
               className="px-6 py-4 bg-transparent border border-gray-600 text-white focus:outline-none focus:border-[#B8860B] w-full sm:w-80 transition-colors placeholder-gray-500 font-light text-sm"
               required
             />
-            <button type="submit" disabled={status === 'loading'} className="bg-[#B8860B] text-white px-8 py-4 uppercase tracking-widest text-xs font-bold hover:bg-white hover:text-luora-primary transition-colors duration-300">
+            <button type="submit" disabled={status === 'loading'} className="bg-[#B8860B] text-white px-8 py-4 uppercase tracking-widest text-xs font-bold hover:bg-white hover:text-brand-primary transition-colors duration-300">
               {status === 'loading' ? 'Subscribing...' : 'Subscribe'}
             </button>
             {status === 'success' && <p className="text-green-500 text-xs mt-2 absolute -bottom-6">Thank you for subscribing!</p>}
@@ -62,7 +62,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           
           <div className="col-span-1 md:col-span-1">
-            <span className="font-serif text-3xl font-bold tracking-[0.2em] uppercase mb-6 block text-[#B8860B]">LUORA</span>
+            <span className="font-serif text-3xl font-bold tracking-[0.2em] uppercase mb-6 block text-[#B8860B]">ONESTORE</span>
             <p className="text-gray-400 text-sm font-light leading-relaxed">
               Jewellery for the Modern Woman. Timeless pieces crafted for every occasion with elegance and precision.
             </p>
@@ -91,7 +91,7 @@ const Footer = () => {
           <div>
             <h4 className="font-serif text-lg tracking-wider mb-6 text-[#B8860B]">Contact Us</h4>
             <ul className="space-y-4 text-sm text-gray-400 font-light">
-              <li>Email: contact@luora.com</li>
+              <li>Email: contact@onestore.com</li>
               <li>Phone: +91 9350996932</li>
               <li className="leading-relaxed">Gurugram</li>
             </ul>
@@ -101,7 +101,7 @@ const Footer = () => {
         
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-500 text-xs font-light tracking-wide mb-4 md:mb-0">
-            &copy; {new Date().getFullYear()} LUORA JEWELLERY. ALL RIGHTS RESERVED.
+            &copy; {new Date().getFullYear()} OneStore. ALL RIGHTS RESERVED.
           </p>
           <div className="flex space-x-6">
             <a href="#" className="text-gray-500 hover:text-white transition-colors text-xs tracking-wider uppercase">Instagram</a>

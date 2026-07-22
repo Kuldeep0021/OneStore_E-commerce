@@ -66,7 +66,7 @@ const CheckoutPage = () => {
         key: import.meta.env.VITE_RAZORPAY_KEY_ID || 'rzp_test_placeholder', // Use env variable in real app
         amount: data.razorpayOrder.amount,
         currency: "INR",
-        name: "Luora Jewellery",
+        name: "OneStore",
         description: "Test Transaction",
         order_id: data.razorpayOrder.id,
         handler: async function (response) {

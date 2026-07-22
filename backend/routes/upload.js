@@ -11,7 +11,7 @@ const router = express.Router();
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: 'luora-jewellery',
+    folder: 'onestore',
     allowedFormats: ['jpg', 'png', 'jpeg', 'webp'],
   },
 });
