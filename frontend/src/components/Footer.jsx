@@ -48,10 +48,10 @@ const Footer = () => {
               placeholder="Enter your email address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="px-6 py-4 bg-transparent border border-gray-600 text-white focus:outline-none focus:border-[#B8860B] w-full sm:w-80 transition-colors placeholder-gray-500 font-light text-sm"
+              className="px-6 py-4 bg-transparent border border-gray-600 text-white focus:outline-none focus:border-white w-full sm:w-80 transition-colors placeholder-gray-500 font-light text-sm"
               required
             />
-            <button type="submit" disabled={status === 'loading'} className="bg-[#B8860B] text-white px-8 py-4 uppercase tracking-widest text-xs font-bold hover:bg-white hover:text-brand-primary transition-colors duration-300">
+            <button type="submit" disabled={status === 'loading'} className="bg-white text-black px-8 py-4 uppercase tracking-widest text-xs font-bold hover:bg-gray-200 transition-colors duration-300">
               {status === 'loading' ? 'Subscribing...' : 'Subscribe'}
             </button>
             {status === 'success' && <p className="text-green-500 text-xs mt-2 absolute -bottom-6">Thank you for subscribing!</p>}
@@ -62,14 +62,14 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           
           <div className="col-span-1 md:col-span-1">
-            <span className="font-serif text-3xl font-bold tracking-[0.2em] uppercase mb-6 block text-[#B8860B]">ONESTORE</span>
+            <span className="font-serif text-3xl font-bold tracking-[0.2em] uppercase mb-6 block text-white">ONESTORE</span>
             <p className="text-gray-400 text-sm font-light leading-relaxed">
-              Jewellery for the Modern Woman. Timeless pieces crafted for every occasion with elegance and precision.
+              Your one-stop destination for everything you need. Quality products delivered straight to your door with care and precision.
             </p>
           </div>
           
           <div>
-            <h4 className="font-serif text-lg tracking-wider mb-6 text-[#B8860B]">Shop</h4>
+            <h4 className="font-serif text-lg tracking-wider mb-6 text-white">Shop</h4>
             <ul className="space-y-4">
               <li><Link to="/#categories" className="text-gray-400 hover:text-white transition-colors text-sm font-light">New Arrivals</Link></li>
               {categories.map((cat) => (
@@ -79,7 +79,7 @@ const Footer = () => {
           </div>
           
           <div>
-            <h4 className="font-serif text-lg tracking-wider mb-6 text-[#B8860B]">Help & Policies</h4>
+            <h4 className="font-serif text-lg tracking-wider mb-6 text-white">Help & Policies</h4>
             <ul className="space-y-4">
               <li><Link to="/privacy-policy" className="text-gray-400 hover:text-white transition-colors text-sm font-light">Privacy Policy</Link></li>
               <li><Link to="/refund-policy" className="text-gray-400 hover:text-white transition-colors text-sm font-light">Refund Policy</Link></li>
@@ -89,7 +89,7 @@ const Footer = () => {
           </div>
           
           <div>
-            <h4 className="font-serif text-lg tracking-wider mb-6 text-[#B8860B]">Contact Us</h4>
+            <h4 className="font-serif text-lg tracking-wider mb-6 text-white">Contact Us</h4>
             <ul className="space-y-4 text-sm text-gray-400 font-light">
               <li>Email: contact@onestore.com</li>
               <li>Phone: +91 9350996932</li>
