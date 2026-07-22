@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Filter } from 'lucide-react';
-import api from '../api';
+import { Filter, ChevronDown } from 'lucide-react';
+import api, { getImageUrl } from '../api';
 
 const CategoryPage = () => {
   const { id } = useParams();
@@ -114,7 +114,7 @@ const CategoryPage = () => {
                   <div className="aspect-w-3 aspect-h-4 bg-gray-50 relative overflow-hidden mb-4 h-80">
                     {product.images && product.images.length > 0 ? (
                       <img
-                        src={product.images[0].startsWith('http') || product.images[0].startsWith('/') ? product.images[0] : `/${product.images[0]}`}
+                        src={getImageUrl(product.images[0])}
                         alt={product.name}
                         className="w-full h-full object-contain p-4 transition-transform duration-700 group-hover:scale-110"
                       />

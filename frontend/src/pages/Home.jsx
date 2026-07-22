@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import api from '../api';
+import api, { getImageUrl } from '../api';
 
 const Home = () => {
   const [categories, setCategories] = useState([]);
@@ -79,7 +79,7 @@ const Home = () => {
             {categories.map((category) => (
               <Link key={category._id} to={`/category/${category._id}`} className="group relative overflow-hidden block h-[450px]">
                 <img 
-                  src={category.image.startsWith('http') || category.image.startsWith('/') ? category.image : `/${category.image}`} 
+                  src={getImageUrl(category.image)} 
                   alt={category.name} 
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
@@ -110,7 +110,7 @@ const Home = () => {
                 <Link key={product._id} to={`/product/${product._id}`} className="group block">
                   <div className="relative h-80 overflow-hidden mb-4 bg-white">
                     <img 
-                      src={product.images[0]?.startsWith('http') || product.images[0]?.startsWith('/') ? product.images[0] : `/${product.images[0]}`} 
+                      src={getImageUrl(product.images[0])} 
                       alt={product.name} 
                       className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110 p-4"
                     />

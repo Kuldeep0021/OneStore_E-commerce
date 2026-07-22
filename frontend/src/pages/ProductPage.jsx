@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Check, Heart, Star } from 'lucide-react';
-import api from '../api';
+import api, { getImageUrl } from '../api';
 import { useStore } from '../store';
 
 const ProductPage = () => {
@@ -80,13 +80,13 @@ const ProductPage = () => {
                 onClick={() => setMainImage(img)}
                 className={`flex-shrink-0 w-20 h-20 overflow-hidden border-2 transition-all ${mainImage === img ? 'border-luora-accent scale-105' : 'border-transparent'}`}
               >
-                <img src={img.startsWith('http') || img.startsWith('/') ? img : `/${img}`} alt="" className="w-full h-full object-cover" />
+                <img src={getImageUrl(img)} alt="" className="w-full h-full object-cover" />
               </button>
             ))}
           </div>
           <div className="w-full relative overflow-hidden lg:flex-1 h-[600px] bg-gray-50 group">
             {mainImage ? (
-              <img src={mainImage.startsWith('http') || mainImage.startsWith('/') ? mainImage : `/${mainImage}`} alt={product.name} className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-150 origin-center p-8" />
+              <img src={getImageUrl(mainImage)} alt={product.name} className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-150 origin-center p-8" />
             ) : (
               <div className="w-full h-full flex items-center justify-center">No Image</div>
             )}
