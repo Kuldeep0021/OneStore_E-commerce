@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { Trash2, Plus, Minus } from 'lucide-react';
 import { useStore } from '../store';
+import { getImageUrl } from '../api';
 
 const CartPage = () => {
   const { cart, updateQuantity, removeFromCart, cartTotal } = useStore();
@@ -23,7 +24,7 @@ const CartPage = () => {
                 <li key={item.product._id} className="flex py-6 sm:py-10">
                   <div className="flex-shrink-0">
                     <img
-                      src={item.product.images && item.product.images[0] ? (item.product.images[0].startsWith('http') ? item.product.images[0] : `http://localhost:5000${item.product.images[0]}`) : 'placeholder.jpg'}
+                      src={item.product.images && item.product.images[0] ? getImageUrl(item.product.images[0]) : 'placeholder.jpg'}
                       alt={item.product.name}
                       className="w-24 h-24 rounded-md object-cover sm:w-32 sm:h-32"
                     />

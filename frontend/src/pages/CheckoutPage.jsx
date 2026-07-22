@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import api from '../api';
+import api, { getImageUrl } from '../api';
 import { useStore } from '../store';
 
 const CheckoutPage = () => {
@@ -163,7 +163,7 @@ const CheckoutPage = () => {
           <ul className="divide-y divide-gray-200">
             {cart.map((item) => (
               <li key={item.product._id} className="py-4 flex">
-                <img src={item.product.images[0]?.startsWith('http') ? item.product.images[0] : `http://localhost:5000${item.product.images[0]}`} alt={item.product.name} className="w-16 h-16 rounded-md object-cover" />
+                <img src={getImageUrl(item.product.images[0])} alt={item.product.name} className="w-16 h-16 rounded-md object-cover" />
                 <div className="ml-4 flex-1 flex flex-col justify-center">
                   <h3 className="text-sm font-medium text-gray-900">{item.product.name}</h3>
                   <p className="text-sm text-gray-500">Qty: {item.quantity}</p>
