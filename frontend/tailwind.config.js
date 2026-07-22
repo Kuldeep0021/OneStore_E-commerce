@@ -11,6 +11,7 @@ export default {
         'luora-primary': '#111111',
         'luora-secondary': '#f9f9f9',
         'luora-accent': '#D4AF37',
+        'luora-gold-dark': '#B8860B',
         'luora-text': '#333333',
         'luora-muted': '#888888',
       },

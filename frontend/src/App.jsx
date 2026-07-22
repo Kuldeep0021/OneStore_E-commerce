@@ -9,6 +9,10 @@ import CheckoutPage from './pages/CheckoutPage';
 import LoginPage from './pages/LoginPage';
 import WishlistPage from './pages/WishlistPage';
 import ProfilePage from './pages/ProfilePage';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import RefundPolicy from './pages/RefundPolicy';
+import ShippingPolicy from './pages/ShippingPolicy';
+import TermsOfService from './pages/TermsOfService';
 import AdminLayout from './components/AdminLayout';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminCategories from './pages/admin/AdminCategories';
@@ -55,6 +59,10 @@ function App() {
                   <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
                   <Route path="/checkout" element={<PrivateRoute><CheckoutPage /></PrivateRoute>} />
                   <Route path="/login" element={<LoginPage />} />
+                  <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                  <Route path="/refund-policy" element={<RefundPolicy />} />
+                  <Route path="/shipping-policy" element={<ShippingPolicy />} />
+                  <Route path="/terms-of-service" element={<TermsOfService />} />
                 </Routes>
               </main>
               <Footer />
