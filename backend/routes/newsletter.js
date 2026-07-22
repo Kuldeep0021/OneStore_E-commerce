@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.post('/', async (req, res) => {
   const { email } = req.body;
-  if (!email) return res.status(400).json({ message: 'Email is required' });
+  if (!email || typeof email !== 'string') return res.status(400).json({ message: 'Valid email is required' });
 
   try {
     const existing = await Newsletter.findOne({ email });

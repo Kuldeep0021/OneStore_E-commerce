@@ -19,7 +19,7 @@ const CartPage = () => {
         <div className="lg:grid lg:grid-cols-12 lg:gap-x-12 lg:items-start">
           <div className="lg:col-span-8">
             <ul className="divide-y divide-gray-200 border-t border-b border-gray-200">
-              {cart.map((item) => (
+              {cart.filter(item => item && item.product).map((item) => (
                 <li key={item.product._id} className="flex py-6 sm:py-10">
                   <div className="flex-shrink-0">
                     <img

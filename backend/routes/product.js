@@ -1,4 +1,5 @@
 import express from 'express';
+import mongoose from 'mongoose';
 import Product from '../models/Product.js';
 import { protect, admin } from '../middleware/auth.js';
 
@@ -13,8 +14,8 @@ router.get('/', async (req, res) => {
     
     if (minPrice || maxPrice) {
       query.price = {};
-      if (minPrice) query.price.$gte = Number(minPrice);
-      if (maxPrice) query.price.$lte = Number(maxPrice);
+      if (minPrice && !isNaN(minPrice)) query.price.$gte = Number(minPrice);
+      if (maxPrice && !isNaN(maxPrice)) query.price.$lte = Number(maxPrice);
     }
     
     let sortObj = { createdAt: -1 };
@@ -40,6 +41,7 @@ router.get('/all', protect, admin, async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   try {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) return res.status(400).json({ message: 'Invalid product ID' });
     const product = await Product.findById(req.params.id).populate('category');
     if (!product) return res.status(404).json({ message: 'Product not found' });
     res.json(product);
@@ -52,7 +54,8 @@ router.post('/', protect, admin, async (req, res) => {
   const { name, description, price, images, category, stockQuantity, isActive } = req.body;
   try {
     if (!name || !price || !category) return res.status(400).json({ message: 'Missing required fields' });
-    if (price <= 0) return res.status(400).json({ message: 'Price must be positive' });
+    if (price <= 0 || isNaN(price)) return res.status(400).json({ message: 'Price must be a positive number' });
+    if (stockQuantity !== undefined && (isNaN(stockQuantity) || stockQuantity < 0)) return res.status(400).json({ message: 'Stock quantity must be a non-negative number' });
 
     const product = await Product.create({
       name, description, price, images, category, stockQuantity, isActive
@@ -65,6 +68,7 @@ router.post('/', protect, admin, async (req, res) => {
 
 router.put('/:id', protect, admin, async (req, res) => {
   try {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) return res.status(400).json({ message: 'Invalid product ID' });
     const product = await Product.findById(req.params.id);
     if (!product) return res.status(404).json({ message: 'Product not found' });
 
@@ -89,6 +93,7 @@ router.put('/:id', protect, admin, async (req, res) => {
 
 router.delete('/:id', protect, admin, async (req, res) => {
   try {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) return res.status(400).json({ message: 'Invalid product ID' });
     const product = await Product.findById(req.params.id);
     if (!product) return res.status(404).json({ message: 'Product not found' });
     await product.deleteOne();
@@ -100,6 +105,10 @@ router.delete('/:id', protect, admin, async (req, res) => {
 router.post('/:id/reviews', protect, async (req, res) => {
   const { rating, comment } = req.body;
   try {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) return res.status(400).json({ message: 'Invalid product ID' });
+    if (!rating || isNaN(rating) || rating < 1 || rating > 5) return res.status(400).json({ message: 'Rating must be a number between 1 and 5' });
+    if (!comment || typeof comment !== 'string') return res.status(400).json({ message: 'Review comment is required' });
+
     const product = await Product.findById(req.params.id);
     if (!product) return res.status(404).json({ message: 'Product not found' });
 

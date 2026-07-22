@@ -2,18 +2,36 @@ import express from 'express';
 import Razorpay from 'razorpay';
 import crypto from 'crypto';
 import Order from '../models/Order.js';
+import Product from '../models/Product.js';
 import { protect, admin } from '../middleware/auth.js';
 
 const router = express.Router();
 
 router.post('/', protect, async (req, res) => {
-  const { items, shippingDetails, totalAmount } = req.body;
+  const { items, shippingDetails } = req.body;
 
   try {
-    if (!items || items.length === 0) {
+    if (!items || !Array.isArray(items) || items.length === 0) {
       return res.status(400).json({ message: 'No order items' });
     }
+    if (!shippingDetails || !shippingDetails.address) {
+      return res.status(400).json({ message: 'Shipping details are required' });
+    }
     
+    // Secure price calculation from DB
+    let serverTotalAmount = 0;
+    const validatedItems = [];
+    for (const item of items) {
+      const product = await Product.findById(item.product);
+      if (!product) return res.status(404).json({ message: `Product not found: ${item.product}` });
+      serverTotalAmount += product.price * item.quantity;
+      validatedItems.push({
+        product: product._id,
+        quantity: item.quantity,
+        priceAtPurchase: product.price
+      });
+    }
+
     // Create Razorpay Order
     const razorpay = new Razorpay({
       key_id: process.env.RAZORPAY_KEY_ID,
@@ -21,7 +39,7 @@ router.post('/', protect, async (req, res) => {
     });
 
     const options = {
-      amount: Math.round(totalAmount * 100), // amount in smallest currency unit
+      amount: Math.round(serverTotalAmount * 100), // amount in smallest currency unit
       currency: "INR",
       receipt: `receipt_order_${Date.now()}`,
     };
@@ -30,9 +48,9 @@ router.post('/', protect, async (req, res) => {
 
     const order = await Order.create({
       user: req.user.id,
-      items,
+      items: validatedItems,
       shippingDetails,
-      totalAmount,
+      totalAmount: serverTotalAmount,
       razorpayOrderId: razorpayOrder.id,
     });
 
@@ -49,6 +67,10 @@ router.post('/verify', protect, async (req, res) => {
   const { razorpayOrderId, razorpayPaymentId, razorpaySignature } = req.body;
 
   try {
+    if (!razorpayOrderId || !razorpayPaymentId || !razorpaySignature) {
+      return res.status(400).json({ message: 'Missing payment details' });
+    }
+
     const sign = razorpayOrderId + "|" + razorpayPaymentId;
     const expectedSign = crypto
       .createHmac("sha256", process.env.RAZORPAY_KEY_SECRET)

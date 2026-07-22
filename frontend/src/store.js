@@ -46,7 +46,8 @@ export const useStore = create((set, get) => ({
     const { cart } = get();
     const newCart = cart.map(item => {
       if (item.product._id === productId) {
-        const newQuantity = Math.max(1, item.quantity + delta);
+        const maxStock = item.product.stockQuantity || 1;
+        const newQuantity = Math.max(1, Math.min(maxStock, item.quantity + delta));
         return { ...item, quantity: newQuantity };
       }
       return item;

@@ -14,6 +14,10 @@ const generateToken = (id, role) => {
 
 router.post('/register', async (req, res) => {
   const { name, email, password } = req.body;
+  if (!name || !email || !password || typeof email !== 'string') {
+    return res.status(400).json({ message: 'Missing required fields or invalid email' });
+  }
+
   try {
     const userExists = await User.findOne({ email });
     if (userExists) return res.status(400).json({ message: 'User already exists' });
@@ -47,6 +51,10 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
+  if (!email || !password || typeof email !== 'string') {
+    return res.status(400).json({ message: 'Missing required fields or invalid email' });
+  }
+
   try {
     const user = await User.findOne({ email });
     if (user && (await bcrypt.compare(password, user.password))) {
