@@ -6,7 +6,23 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
   try {
-    const products = await Product.find({ isActive: true }).populate('category');
+    const { category, sort, minPrice, maxPrice } = req.query;
+    let query = { isActive: true };
+    
+    if (category) query.category = category;
+    
+    if (minPrice || maxPrice) {
+      query.price = {};
+      if (minPrice) query.price.$gte = Number(minPrice);
+      if (maxPrice) query.price.$lte = Number(maxPrice);
+    }
+    
+    let sortObj = { createdAt: -1 };
+    if (sort === 'price_asc') sortObj = { price: 1 };
+    else if (sort === 'price_desc') sortObj = { price: -1 };
+    else if (sort === 'newest') sortObj = { createdAt: -1 };
+
+    const products = await Product.find(query).populate('category').sort(sortObj);
     res.json(products);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -77,6 +93,37 @@ router.delete('/:id', protect, admin, async (req, res) => {
     if (!product) return res.status(404).json({ message: 'Product not found' });
     await product.deleteOne();
     res.json({ message: 'Product removed' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+router.post('/:id/reviews', protect, async (req, res) => {
+  const { rating, comment } = req.body;
+  try {
+    const product = await Product.findById(req.params.id);
+    if (!product) return res.status(404).json({ message: 'Product not found' });
+
+    const alreadyReviewed = product.reviews.find(
+      (r) => r.user.toString() === req.user._id.toString()
+    );
+
+    if (alreadyReviewed) {
+      return res.status(400).json({ message: 'Product already reviewed' });
+    }
+
+    const review = {
+      name: req.user.name,
+      rating: Number(rating),
+      comment,
+      user: req.user._id,
+    };
+
+    product.reviews.push(review);
+    product.numReviews = product.reviews.length;
+    product.rating = product.reviews.reduce((acc, item) => item.rating + acc, 0) / product.reviews.length;
+
+    await product.save();
+    res.status(201).json({ message: 'Review added' });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

@@ -7,6 +7,8 @@ import ProductPage from './pages/ProductPage';
 import CartPage from './pages/CartPage';
 import CheckoutPage from './pages/CheckoutPage';
 import LoginPage from './pages/LoginPage';
+import WishlistPage from './pages/WishlistPage';
+import ProfilePage from './pages/ProfilePage';
 import AdminLayout from './components/AdminLayout';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminCategories from './pages/admin/AdminCategories';
@@ -49,6 +51,8 @@ function App() {
                   <Route path="/category/:id" element={<CategoryPage />} />
                   <Route path="/product/:id" element={<ProductPage />} />
                   <Route path="/cart" element={<CartPage />} />
+                  <Route path="/wishlist" element={<PrivateRoute><WishlistPage /></PrivateRoute>} />
+                  <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
                   <Route path="/checkout" element={<PrivateRoute><CheckoutPage /></PrivateRoute>} />
                   <Route path="/login" element={<LoginPage />} />
                 </Routes>

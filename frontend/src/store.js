@@ -4,6 +4,7 @@ export const useStore = create((set, get) => ({
   user: JSON.parse(localStorage.getItem('user')) || null,
   token: localStorage.getItem('token') || null,
   cart: JSON.parse(localStorage.getItem('cart')) || [],
+  wishlist: JSON.parse(localStorage.getItem('wishlist')) || [],
   
   setUser: (user, token) => {
     localStorage.setItem('user', JSON.stringify(user));
@@ -14,7 +15,14 @@ export const useStore = create((set, get) => ({
   logout: () => {
     localStorage.removeItem('user');
     localStorage.removeItem('token');
-    set({ user: null, token: null });
+    localStorage.removeItem('cart');
+    localStorage.removeItem('wishlist');
+    set({ user: null, token: null, cart: [], wishlist: [] });
+  },
+
+  setWishlist: (wishlist) => {
+    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    set({ wishlist });
   },
 
   addToCart: (product, quantity = 1) => {

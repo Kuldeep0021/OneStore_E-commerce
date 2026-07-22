@@ -9,6 +9,8 @@ import categoryRoutes from './routes/category.js';
 import productRoutes from './routes/product.js';
 import orderRoutes from './routes/order.js';
 import uploadRoutes from './routes/upload.js';
+import newsletterRoutes from './routes/newsletter.js';
+import userRoutes from './routes/user.js';
 import User from './models/User.js';
 import bcrypt from 'bcryptjs';
 
@@ -28,6 +30,8 @@ app.use('/api/categories', categoryRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/upload', uploadRoutes);
+app.use('/api/newsletter', newsletterRoutes);
+app.use('/api/users', userRoutes);
 
 app.get('/', (req, res) => {
   res.send('API is running...');
@@ -57,3 +61,5 @@ mongoose.connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/luora').the
 }).catch(err => {
   console.error(`Error connecting to MongoDB: ${err.message}`);
 });
+
+

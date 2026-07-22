@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Eye, EyeOff } from 'lucide-react';
 import api from '../api';
 import { useStore } from '../store';
 
 const LoginPage = () => {
   const [isLogin, setIsLogin] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', password: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -69,9 +71,12 @@ const LoginPage = () => {
               <label htmlFor="email-address" className="sr-only">Email address</label>
               <input id="email-address" name="email" type="email" autoComplete="email" required className="input-field" placeholder="Email address" value={formData.email} onChange={handleChange} />
             </div>
-            <div>
+            <div className="relative">
               <label htmlFor="password" className="sr-only">Password</label>
-              <input id="password" name="password" type="password" autoComplete="current-password" required className="input-field" placeholder="Password" value={formData.password} onChange={handleChange} />
+              <input id="password" name="password" type={showPassword ? "text" : "password"} autoComplete="current-password" required className="input-field pr-10" placeholder="Password" value={formData.password} onChange={handleChange} />
+              <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600">
+                {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+              </button>
             </div>
           </div>
 

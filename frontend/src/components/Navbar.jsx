@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { ShoppingCart, User, LogOut } from 'lucide-react';
+import { ShoppingCart, User, LogOut, Heart } from 'lucide-react';
 import { useStore } from '../store';
 
 const Navbar = () => {
@@ -14,41 +14,58 @@ const Navbar = () => {
   const cartItemsCount = cart.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
-    <nav className="bg-white border-b border-gray-200 sticky top-0 z-50">
+    <nav className="bg-white sticky top-0 z-50 border-b border-gray-100 transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          <div className="flex items-center">
-            <Link to="/" className="flex-shrink-0 flex items-center">
-              <span className="font-serif text-2xl font-bold text-luora-primary tracking-wider">LUORA</span>
+        <div className="flex justify-between items-center h-20">
+          
+          {/* Left: Navigation Links */}
+          <div className="flex-1 flex items-center space-x-8 hidden md:flex">
+            <Link to="/" className="text-sm tracking-widest uppercase text-luora-text hover:text-luora-accent transition-colors">Home</Link>
+            <a href="/#categories" className="text-sm tracking-widest uppercase text-luora-text hover:text-luora-accent transition-colors">Collections</a>
+            {user && user.role === 'admin' && (
+              <Link to="/admin" className="text-sm tracking-widest uppercase text-luora-text hover:text-luora-accent transition-colors">Admin</Link>
+            )}
+          </div>
+
+          {/* Center: Brand Logo */}
+          <div className="flex-1 flex justify-center">
+            <Link to="/" className="flex items-center">
+              <span className="font-serif text-3xl md:text-4xl font-bold text-luora-primary tracking-[0.2em] uppercase">Luora</span>
             </Link>
           </div>
-          <div className="flex items-center space-x-6">
-            {user && user.role === 'admin' && (
-              <Link to="/admin" className="text-sm font-medium text-gray-500 hover:text-luora-primary">Admin</Link>
+
+          {/* Right: Icons */}
+          <div className="flex-1 flex items-center justify-end space-x-6">
+            {user ? (
+              <div className="relative flex items-center space-x-6">
+                <span className="text-sm text-gray-700 hidden sm:block tracking-wide">Welcome, {user.name}</span>
+                <Link to="/profile" className="text-luora-text hover:text-luora-accent transition-colors" title="My Profile">
+                  <User className="h-5 w-5" strokeWidth={1.5} />
+                </Link>
+                <button onClick={handleLogout} className="text-luora-text hover:text-luora-accent transition-colors" title="Log Out">
+                  <LogOut className="h-5 w-5" strokeWidth={1.5} />
+                </button>
+              </div>
+            ) : (
+              <Link to="/login" className="text-luora-text hover:text-luora-accent transition-colors">
+                <User className="h-5 w-5" strokeWidth={1.5} />
+              </Link>
             )}
-            
-            <Link to="/cart" className="text-gray-500 hover:text-luora-primary relative">
-              <ShoppingCart className="h-6 w-6" />
+
+            <Link to="/wishlist" className="text-luora-text hover:text-luora-accent transition-colors">
+              <Heart className="h-5 w-5" strokeWidth={1.5} />
+            </Link>
+
+            <Link to="/cart" className="text-luora-text hover:text-luora-accent transition-colors relative">
+              <ShoppingCart className="h-5 w-5" strokeWidth={1.5} />
               {cartItemsCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-luora-accent text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                <span className="absolute -top-2 -right-2 bg-luora-accent text-white text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center">
                   {cartItemsCount}
                 </span>
               )}
             </Link>
-
-            {user ? (
-              <div className="relative flex items-center space-x-4">
-                <span className="text-sm text-gray-700 hidden sm:block">Hi, {user.name}</span>
-                <button onClick={handleLogout} className="text-gray-500 hover:text-luora-primary">
-                  <LogOut className="h-6 w-6" />
-                </button>
-              </div>
-            ) : (
-              <Link to="/login" className="text-gray-500 hover:text-luora-primary">
-                <User className="h-6 w-6" />
-              </Link>
-            )}
           </div>
+          
         </div>
       </div>
     </nav>

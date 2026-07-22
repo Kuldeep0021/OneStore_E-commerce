@@ -7,10 +7,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        'luora-bg': '#fafafa',
-        'luora-primary': '#2d2d2d',
-        'luora-secondary': '#e8e6e1',
-        'luora-accent': '#c1a68d',
+        'luora-bg': '#ffffff',
+        'luora-primary': '#111111',
+        'luora-secondary': '#f9f9f9',
+        'luora-accent': '#D4AF37',
         'luora-text': '#333333',
         'luora-muted': '#888888',
       },
