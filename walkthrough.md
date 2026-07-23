@@ -1,8 +1,8 @@
-# Luora E-Commerce Application Walkthrough
+# OneStore E-Commerce Application Walkthrough
 
 ## Summary of Work
 
-I have successfully built the complete architecture and source code for the Luora e-commerce application. The project is split into a modular backend and frontend.
+I have successfully built the complete architecture and source code for the OneStore e-commerce application. The project is split into a modular backend and frontend.
 
 ### Backend
 
@@ -14,7 +14,7 @@ I have successfully built the complete architecture and source code for the Luor
   - Category and Product CRUD operations.
   - Image uploading using `multer` with support for up to 10 images at once.
   - Order creation and Razorpay payment verification.
-- Seeded a default admin account (`admin@luora.com` / `Admin@123`).
+- Seeded a default admin account (`admin@onestore.com` / `Admin@123`).
 
 ### Frontend
 

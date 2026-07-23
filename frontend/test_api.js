@@ -8,7 +8,7 @@ async function runTests() {
   try {
     console.log('Testing Admin Login...');
     const loginRes = await api.post('/auth/login', {
-      email: 'admin@luora.com',
+      email: 'admin@onestore.com',
       password: 'Admin@123'
     });
     console.log('Admin login successful. Token:', loginRes.data.token.substring(0, 15) + '...');

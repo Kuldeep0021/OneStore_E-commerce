@@ -1,6 +1,6 @@
-# Luora Jewellery E-Commerce Application
+# OneStore E-Commerce Application
 
-Luora is a modern, responsive full-stack e-commerce application built with React, Vite, Tailwind CSS, Node.js, Express, and MongoDB.
+OneStore is a modern, responsive full-stack e-commerce application built with React, Vite, Tailwind CSS, Node.js, Express, and MongoDB.
 
 ## Features
 
@@ -37,7 +37,7 @@ npm install
 Configure `.env` in the `backend` folder based on the `.env.example`:
 ```
 PORT=5000
-MONGO_URI=mongodb://127.0.0.1:27017/luora
+MONGO_URI=mongodb://127.0.0.1:27017/onestore
 JWT_SECRET=supersecret123
 RAZORPAY_KEY_ID=your_razorpay_key_id
 RAZORPAY_KEY_SECRET=your_razorpay_key_secret

@@ -9,7 +9,7 @@ async function seedProducts() {
     // 1. Login
     console.log('Logging in as admin...');
     const loginRes = await api.post('/auth/login', {
-      email: 'admin@luora.com',
+      email: 'admin@onestore.com',
       password: 'Admin@123'
     });
     const token = loginRes.data.token;
