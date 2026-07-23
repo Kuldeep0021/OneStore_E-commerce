@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../api';
+import { useStore } from '../store';
 
 const Footer = () => {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState('');
   const [categories, setCategories] = useState([]);
+  const settings = useStore(state => state.settings);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -91,9 +93,9 @@ const Footer = () => {
           <div>
             <h4 className="font-serif text-lg tracking-wider mb-6 text-white">Contact Us</h4>
             <ul className="space-y-4 text-sm text-gray-400 font-light">
-              <li>Email: contact@onestore.com</li>
-              <li>Phone: +91 9350996932</li>
-              <li className="leading-relaxed">Gurugram</li>
+              <li>Email: {settings?.email || 'contact@onestore.com'}</li>
+              <li>Phone: {settings?.phone || '+91 9350996932'}</li>
+              <li className="leading-relaxed whitespace-pre-wrap">{settings?.address || 'Gurugram'}</li>
             </ul>
           </div>
 

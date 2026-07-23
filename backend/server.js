@@ -14,6 +14,7 @@ import orderRoutes from './routes/order.js';
 import uploadRoutes from './routes/upload.js';
 import newsletterRoutes from './routes/newsletter.js';
 import userRoutes from './routes/user.js';
+import settingRoutes from './routes/setting.js';
 import User from './models/User.js';
 import bcrypt from 'bcryptjs';
 
@@ -56,6 +57,7 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/upload', uploadRoutes);
 app.use('/api/newsletter', newsletterRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/settings', settingRoutes);
 
 app.get('/', (req, res) => {
   res.send('API is running...');

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, Outlet, useNavigate, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Tag, ShoppingBag, Users, ShoppingCart, LogOut, Settings, Menu, X } from 'lucide-react';
+import { LayoutDashboard, Tag, ShoppingBag, Users, ShoppingCart, LogOut, Settings, Menu, X, Store } from 'lucide-react';
 import { useStore } from '../store';
 
 const AdminLayout = () => {
@@ -22,7 +22,8 @@ const AdminLayout = () => {
     { name: 'Products', path: '/admin/products', icon: ShoppingBag },
     { name: 'Orders', path: '/admin/orders', icon: ShoppingCart },
     { name: 'Users', path: '/admin/users', icon: Users },
-    { name: 'Settings', path: '/admin/settings', icon: Settings },
+    { name: 'Profile Settings', path: '/admin/settings', icon: Settings },
+    { name: 'Store Info', path: '/admin/store-settings', icon: Store },
   ];
 
   return (

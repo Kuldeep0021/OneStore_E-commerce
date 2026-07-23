@@ -1,4 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import api from './api';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -20,6 +22,7 @@ import AdminProducts from './pages/admin/AdminProducts';
 import AdminOrders from './pages/admin/AdminOrders';
 import AdminUsers from './pages/admin/AdminUsers';
 import AdminSettings from './pages/admin/AdminSettings';
+import AdminStoreSettings from './pages/admin/AdminStoreSettings';
 import { useStore } from './store';
 
 const PrivateRoute = ({ children }) => {
@@ -33,6 +36,20 @@ const AdminRoute = ({ children }) => {
 };
 
 function App() {
+  const setSettings = useStore(state => state.setSettings);
+
+  useEffect(() => {
+    const fetchSettings = async () => {
+      try {
+        const { data } = await api.get('/settings');
+        setSettings(data);
+      } catch (error) {
+        console.error('Failed to fetch settings:', error);
+      }
+    };
+    fetchSettings();
+  }, [setSettings]);
+
   return (
     <Router>
       <div className="flex flex-col min-h-screen">
@@ -45,6 +62,7 @@ function App() {
             <Route path="orders" element={<AdminOrders />} />
             <Route path="users" element={<AdminUsers />} />
             <Route path="settings" element={<AdminSettings />} />
+            <Route path="store-settings" element={<AdminStoreSettings />} />
           </Route>
 
           {/* Public Routes */}

@@ -5,7 +5,10 @@ export const useStore = create((set, get) => ({
   token: localStorage.getItem('token') || null,
   cart: JSON.parse(localStorage.getItem('cart')) || [],
   wishlist: JSON.parse(localStorage.getItem('wishlist')) || [],
+  settings: null,
   
+  setSettings: (settings) => set({ settings }),
+
   setUser: (user, token) => {
     localStorage.setItem('user', JSON.stringify(user));
     localStorage.setItem('token', token);
