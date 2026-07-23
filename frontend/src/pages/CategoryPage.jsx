@@ -59,20 +59,20 @@ const CategoryPage = () => {
         <div className="h-[1px] w-24 bg-brand-accent mx-auto"></div>
       </div>
 
-      <div className="flex flex-col md:flex-row gap-12">
+      <div className="flex flex-col md:flex-row gap-8 lg:gap-12">
         {/* Sidebar Filters */}
         <div className="w-full md:w-64 flex-shrink-0">
-          <div className="flex items-center mb-6 text-brand-primary">
+          <div className="flex items-center mb-4 sm:mb-6 text-brand-primary">
             <Filter className="w-5 h-5 mr-2" />
             <h2 className="text-lg font-serif uppercase tracking-widest">Filter</h2>
           </div>
           
-          <div className="mb-8">
-            <h3 className="text-sm font-bold uppercase tracking-widest mb-4">Sort By</h3>
+          <div className="mb-6 sm:mb-8">
+            <h3 className="text-sm font-bold uppercase tracking-widest mb-3 sm:mb-4">Sort By</h3>
             <select 
               value={sort} 
               onChange={(e) => setSort(e.target.value)}
-              className="w-full border border-gray-300 p-3 font-light text-sm focus:border-brand-accent focus:outline-none"
+              className="w-full border border-gray-300 p-3 font-light text-base sm:text-sm focus:border-brand-accent focus:outline-none rounded-md bg-white"
             >
               <option value="newest">Newest Arrivals</option>
               <option value="price_asc">Price: Low to High</option>
@@ -81,21 +81,23 @@ const CategoryPage = () => {
           </div>
 
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-widest mb-4">Price Range</h3>
+            <h3 className="text-sm font-bold uppercase tracking-widest mb-3 sm:mb-4">Price Range</h3>
             <div className="flex gap-4 mb-4">
               <input 
                 type="number" 
+                inputMode="numeric"
                 placeholder="Min ₹" 
                 value={minPrice}
                 onChange={(e) => setMinPrice(e.target.value)}
-                className="w-full border border-gray-300 p-2 font-light text-sm focus:border-brand-accent focus:outline-none"
+                className="w-full border border-gray-300 p-3 font-light text-base sm:text-sm focus:border-brand-accent focus:outline-none rounded-md"
               />
               <input 
                 type="number" 
+                inputMode="numeric"
                 placeholder="Max ₹" 
                 value={maxPrice}
                 onChange={(e) => setMaxPrice(e.target.value)}
-                className="w-full border border-gray-300 p-2 font-light text-sm focus:border-brand-accent focus:outline-none"
+                className="w-full border border-gray-300 p-3 font-light text-base sm:text-sm focus:border-brand-accent focus:outline-none rounded-md"
               />
             </div>
           </div>
@@ -108,23 +110,24 @@ const CategoryPage = () => {
           ) : products.length === 0 ? (
             <div className="text-center text-gray-500 py-12 font-light">No products match your criteria.</div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {products.map((product) => (
-                <Link key={product._id} to={`/product/${product._id}`} className="group block">
-                  <div className="aspect-w-3 aspect-h-4 bg-gray-50 relative overflow-hidden mb-4 h-80">
+                <Link key={product._id} to={`/product/${product._id}`} className="group block bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow overflow-hidden">
+                  <div className="aspect-w-3 aspect-h-4 bg-white relative overflow-hidden h-64 sm:h-80">
                     {product.images && product.images.length > 0 ? (
                       <img
                         src={getImageUrl(product.images[0])}
                         alt={product.name}
+                        loading="lazy"
                         className="w-full h-full object-contain p-4 transition-transform duration-700 group-hover:scale-110"
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-gray-400 font-light">No Image</div>
                     )}
                   </div>
-                  <div className="text-center px-2">
-                    <h3 className="text-xs uppercase tracking-widest text-brand-text mb-2 font-medium truncate">{product.name}</h3>
-                    <p className="text-brand-accent font-serif italic text-lg">₹{product.price.toLocaleString()}</p>
+                  <div className="text-center p-4 border-t border-gray-100">
+                    <h3 className="text-sm sm:text-base uppercase tracking-widest text-brand-text mb-2 font-semibold truncate">{product.name}</h3>
+                    <p className="text-brand-accent font-sans font-bold text-lg">₹{product.price.toLocaleString()}</p>
                   </div>
                 </Link>
               ))}

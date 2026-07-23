@@ -1,16 +1,20 @@
+import { useState } from 'react';
 import { Link, Outlet, useNavigate, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Tag, ShoppingBag, Users, ShoppingCart, LogOut, Settings } from 'lucide-react';
+import { LayoutDashboard, Tag, ShoppingBag, Users, ShoppingCart, LogOut, Settings, Menu, X } from 'lucide-react';
 import { useStore } from '../store';
 
 const AdminLayout = () => {
-  const { user, logout } = useStore();
+  const { logout } = useStore();
   const navigate = useNavigate();
   const location = useLocation();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleLogout = () => {
     logout();
     navigate('/');
   };
+
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   const navItems = [
     { name: 'Dashboard', path: '/admin', icon: LayoutDashboard },
@@ -23,21 +27,34 @@ const AdminLayout = () => {
 
   return (
     <div className="flex h-screen bg-gray-100 overflow-hidden">
+      
+      {/* Mobile Sidebar Overlay */}
+      {isMobileMenuOpen && (
+        <div 
+          className="fixed inset-0 z-40 bg-black bg-opacity-50 md:hidden"
+          onClick={closeMobileMenu}
+        ></div>
+      )}
+
       {/* Sidebar */}
-      <div className="w-64 bg-brand-primary text-white flex flex-col">
-        <div className="flex items-center justify-center h-16 border-b border-gray-700">
-          <span className="font-serif text-2xl font-bold tracking-wider">ONESTORE ADMIN</span>
+      <div className={`fixed inset-y-0 left-0 z-50 w-64 bg-brand-primary text-white flex flex-col transform transition-transform duration-300 ease-in-out md:relative md:translate-x-0 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        <div className="flex items-center justify-between h-16 border-b border-gray-700 px-4">
+          <span className="font-serif text-xl sm:text-2xl font-bold tracking-wider truncate">ONESTORE ADMIN</span>
+          <button onClick={closeMobileMenu} className="md:hidden p-2 text-gray-400 hover:text-white">
+            <X className="h-6 w-6" />
+          </button>
         </div>
         <div className="flex-1 overflow-y-auto py-4">
           <nav className="space-y-1 px-2">
             {navItems.map((item) => {
               const Icon = item.icon;
-              const isActive = location.pathname === item.path;
+              const isActive = location.pathname === item.path || (location.pathname.startsWith(item.path) && item.path !== '/admin');
               return (
                 <Link
                   key={item.name}
                   to={item.path}
-                  className={`group flex items-center px-2 py-2 text-sm font-medium rounded-md ${
+                  onClick={closeMobileMenu}
+                  className={`group flex items-center px-2 py-3 sm:py-2 text-base sm:text-sm font-medium rounded-md ${
                     isActive ? 'bg-gray-800 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
                   }`}
                 >
@@ -49,9 +66,9 @@ const AdminLayout = () => {
           </nav>
         </div>
         <div className="flex-shrink-0 flex border-t border-gray-700 p-4">
-          <button onClick={handleLogout} className="flex-shrink-0 w-full group block text-gray-300 hover:text-white flex items-center justify-center space-x-2">
+          <button onClick={handleLogout} className="flex-shrink-0 w-full group block text-gray-300 hover:text-white flex items-center justify-center space-x-2 py-2">
             <LogOut className="h-5 w-5 text-gray-400 group-hover:text-gray-300" />
-            <span className="text-sm font-medium">Log Out</span>
+            <span className="text-base sm:text-sm font-medium">Log Out</span>
           </button>
         </div>
       </div>
@@ -60,14 +77,21 @@ const AdminLayout = () => {
       <div className="flex flex-col w-0 flex-1 overflow-hidden">
         <div className="relative z-10 flex-shrink-0 flex h-16 bg-white shadow justify-between items-center px-4">
           <div className="flex items-center">
-            <h1 className="text-xl font-semibold text-gray-800">Admin Panel</h1>
+            <button 
+              onClick={() => setIsMobileMenuOpen(true)}
+              className="md:hidden p-2 mr-2 text-gray-600 hover:text-gray-900 focus:outline-none"
+            >
+              <Menu className="h-6 w-6" />
+            </button>
+            <h1 className="text-lg sm:text-xl font-semibold text-gray-800 truncate">Admin Panel</h1>
           </div>
           <div className="flex items-center">
-            <Link to="/" className="text-sm text-gray-500 hover:text-brand-primary">Return to Storefront</Link>
+            <Link to="/" className="text-sm text-gray-500 hover:text-brand-primary hidden sm:block">Return to Storefront</Link>
+            <Link to="/" className="text-sm text-gray-500 hover:text-brand-primary sm:hidden">Store</Link>
           </div>
         </div>
 
-        <main className="flex-1 relative overflow-y-auto focus:outline-none p-6">
+        <main className="flex-1 relative overflow-y-auto focus:outline-none p-4 sm:p-6">
           <Outlet />
         </main>
       </div>

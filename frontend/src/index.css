@@ -21,6 +21,6 @@
     @apply bg-brand-secondary text-brand-primary px-6 py-3 rounded-md hover:bg-gray-200 transition-colors duration-300 font-medium;
   }
   .input-field {
-    @apply w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-accent focus:border-transparent transition-all bg-white;
+    @apply w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-accent focus:border-transparent transition-all bg-white text-base;
   }
 }
