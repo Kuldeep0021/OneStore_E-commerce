@@ -61,15 +61,6 @@ Start the frontend Vite server (runs on port 5173 by default):
 npm run dev
 ```
 
-## Admin Access
-
-A default admin account is automatically seeded on the first backend run.
-
-- **Email**: `admin@luora.com`
-- **Password**: `Admin@123`
-
-*Note: You should immediately change this password or delete and recreate an admin account for production use.*
-
 ## E2E Testing Summary
 
 The following flows have been implemented and tested:
