@@ -45,8 +45,8 @@ const Navbar = () => {
 
           {/* Center: Brand Logo */}
           <div className="flex-1 flex justify-center md:justify-center">
-            <Link to="/" className="flex items-center min-h-[44px] p-2" onClick={closeMenu}>
-              <span className="font-sans text-2xl sm:text-3xl md:text-4xl font-bold text-brand-primary tracking-widest uppercase">OneStore</span>
+            <Link to="/" className="flex items-center min-h-[44px]" onClick={closeMenu}>
+              <img src="/logo.png" alt="GiggleToyz" className="h-14 sm:h-16 w-auto object-contain" />
             </Link>
           </div>
 
