@@ -3,7 +3,7 @@ import { useStore } from '../../store';
 import api from '../../api';
 
 const AdminSettings = () => {
-  const { user, login } = useStore();
+  const { user, setUser } = useStore();
   const [name, setName] = useState(user?.name || '');
   const [email, setEmail] = useState(user?.email || '');
   const [password, setPassword] = useState('');
@@ -25,9 +25,7 @@ const AdminSettings = () => {
       });
       
       // Update the global store with new user data. 
-      // If token is not returned, we could reuse the existing token.
-      // But we just updated the route to return the current token.
-      login(data, data.token); 
+      setUser(data, data.token); 
       setMessage('Profile updated successfully!');
       setPassword(''); 
     } catch (err) {
