@@ -8,6 +8,7 @@ const AdminProducts = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [customCategoryName, setCustomCategoryName] = useState('');
   
   const [formData, setFormData] = useState({
     name: '',
@@ -73,6 +74,7 @@ const AdminProducts = () => {
       });
       setExistingImages([]);
     }
+    setCustomCategoryName('');
     setNewFiles([]);
     setNewPreviews([]);
     setIsModalOpen(true);
@@ -126,8 +128,29 @@ const AdminProducts = () => {
 
       const finalImages = [...existingImages, ...uploadedPaths];
       
+      let finalCategoryId = formData.category;
+      if (formData.category === 'others') {
+        if (!customCategoryName.trim()) {
+          alert('Please enter a name for the new category');
+          setLoading(false);
+          return;
+        }
+        try {
+          const catRes = await api.post('/categories', {
+            name: customCategoryName,
+            image: 'https://images.unsplash.com/photo-1513885535751-8b9238bd345a?w=800', // default image
+          });
+          finalCategoryId = catRes.data._id;
+        } catch (err) {
+          alert('Failed to create new category. Please try again.');
+          setLoading(false);
+          return;
+        }
+      }
+      
       const payload = { 
         ...formData, 
+        category: finalCategoryId,
         price: Number(formData.price),
         originalPrice: formData.originalPrice ? Number(formData.originalPrice) : null,
         originalPriceBase: formData.originalPriceBase || '',
@@ -281,12 +304,21 @@ const AdminProducts = () => {
                         </div>
                       </div>
                     </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700">Category</label>
-                      <select value={formData.category} onChange={(e) => setFormData({...formData, category: e.target.value})} className="mt-1 input-field" required>
-                        <option value="">Select Category</option>
-                        {categories.map(c => <option key={c._id} value={c._id}>{c.name}</option>)}
-                      </select>
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:col-span-2">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700">Category</label>
+                        <select value={formData.category} onChange={(e) => setFormData({...formData, category: e.target.value})} className="mt-1 input-field" required>
+                          <option value="">Select Category</option>
+                          {categories.map(c => <option key={c._id} value={c._id}>{c.name}</option>)}
+                          <option value="others">Others...</option>
+                        </select>
+                      </div>
+                      {formData.category === 'others' && (
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700">New Category Name</label>
+                          <input type="text" value={customCategoryName} onChange={(e) => setCustomCategoryName(e.target.value)} className="mt-1 input-field" placeholder="e.g. Gifts" required />
+                        </div>
+                      )}
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700">Stock Quantity</label>
