@@ -37,13 +37,14 @@ const Home = () => {
 
   return (
     <div className="bg-white">
-      {/* Hero Section — OneStore */}
-      <section className="bg-black w-full min-h-[60vh] flex items-center justify-center">
+      {/* Hero Section — Logo & Subtitle */}
+      <section className="bg-black w-full min-h-[60vh] flex items-center justify-center pt-8 pb-12">
         <div className="text-center">
-          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-black text-white tracking-tight">
-            OneStore
-          </h1>
-          <div className="mt-6 h-[2px] w-40 sm:w-56 bg-white mx-auto"></div>
+          <img src="/logo.png" alt="GiggleToyz" className="h-48 sm:h-64 md:h-80 w-auto object-contain mx-auto mb-6" />
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
+            Online store for Toys
+          </h2>
+          <div className="mt-8 h-[2px] w-40 sm:w-56 bg-white mx-auto"></div>
         </div>
       </section>
 
