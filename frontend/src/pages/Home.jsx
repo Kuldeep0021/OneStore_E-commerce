@@ -38,13 +38,13 @@ const Home = () => {
   return (
     <div className="bg-white">
       {/* Hero Section — Logo & Subtitle */}
-      <section className="bg-black w-full min-h-[60vh] flex items-center justify-center pt-8 pb-12">
+      <section className="bg-white w-full min-h-[60vh] flex items-center justify-center pt-8 pb-12 border-b border-gray-100">
         <div className="text-center">
           <img src="/logo.png" alt="GiggleToyz" className="h-48 sm:h-64 md:h-80 w-auto object-contain mx-auto mb-6" />
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black tracking-tight">
             Online store for Toys
           </h2>
-          <div className="mt-8 h-[2px] w-40 sm:w-56 bg-white mx-auto"></div>
+          <div className="mt-8 h-[2px] w-40 sm:w-56 bg-brand-accent mx-auto"></div>
         </div>
       </section>
 
