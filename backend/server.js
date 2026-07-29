@@ -26,26 +26,10 @@ const app = express();
 // Without this, express-rate-limit sees the proxy's IP for all users and blocks them
 app.set('trust proxy', 1);
 
-// Allow multiple frontend origins (localhost dev + Vercel production)
-const allowedOrigins = [
-  'http://localhost:5173',
-  'http://localhost:3000',
-  process.env.FRONTEND_URL,
-].filter(Boolean); // remove undefined/null
-
-const corsOptions = {
-  origin: (origin, callback) => {
-    // Allow requests with no origin (mobile apps, Postman in dev, server-to-server)
-    if (!origin) return callback(null, true);
-    // Allow any Vercel domain (handles preview URLs too)
-    if (allowedOrigins.includes(origin) || origin.endsWith('.vercel.app')) {
-      return callback(null, true);
-    }
-    callback(new Error('Not allowed by CORS'));
-  },
-  credentials: true,
-};
-app.use(cors(corsOptions));
+app.use(cors({
+  origin: ["https://giggletoyz.in", "https://www.giggletoyz.in"],
+  credentials: true
+}));
 app.use(express.json());
 app.use(antiBot);
 
