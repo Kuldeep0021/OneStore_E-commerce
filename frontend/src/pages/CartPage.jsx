@@ -85,7 +85,7 @@ const CartPage = () => {
 
             <div className="mt-6">
               <button
-                onClick={() => navigate('/checkout')}
+                onClick={() => navigate('/complete-order')}
                 className="w-full btn-primary"
               >
                 Proceed to Checkout

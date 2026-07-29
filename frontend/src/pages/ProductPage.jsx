@@ -109,7 +109,44 @@ const ProductPage = () => {
             <span className="ml-2 text-sm text-gray-500 font-light">({product.numReviews} Reviews)</span>
           </div>
 
-          <p className="text-2xl sm:text-3xl text-brand-accent font-serif italic mb-6 sm:mb-8">₹{product.price.toLocaleString()}</p>
+          {/* Price Comparison Card */}
+          {product.originalPrice ? (
+            <div className="flex items-stretch rounded-xl overflow-hidden shadow-md border border-gray-100 mb-6 sm:mb-8">
+              {/* Left: Market Price */}
+              <div className="flex-1 bg-white px-4 py-4 sm:px-5 sm:py-5 flex flex-col items-center justify-center border-r border-gray-100">
+                <div className="bg-gray-800 text-white text-xs font-black tracking-widest uppercase px-3 py-1 rounded mb-2">
+                  Market Price
+                </div>
+                <p className="text-xs text-gray-400 font-light mb-2">
+                  {product.originalPriceBase || 'Price on Leading Marketplaces'}
+                </p>
+                <div className="h-px w-full bg-gray-100 mb-2" />
+                <p className="text-2xl sm:text-3xl font-black text-gray-500 line-through decoration-red-500 decoration-2">
+                  ₹{product.originalPrice.toLocaleString()}
+                </p>
+              </div>
+              {/* VS Badge */}
+              <div className="flex items-center justify-center bg-gray-800 px-2 sm:px-3">
+                <span className="text-white font-black text-xs sm:text-sm">vs</span>
+              </div>
+              {/* Right: Our Price */}
+              <div className="flex-1 bg-gradient-to-br from-pink-50 to-rose-50 px-4 py-4 sm:px-5 sm:py-5 flex flex-col items-center justify-center">
+                <div className="text-xl sm:text-2xl font-black tracking-tight mb-1">
+                  <span className="text-gray-900">Giggle</span><span className="text-pink-500">Toyz</span><span className="text-yellow-400 text-base">🌟</span>
+                </div>
+                <div className="flex items-center gap-1 mb-2">
+                  <span className="text-pink-400 text-xs">›</span>
+                  <span className="text-xs font-bold tracking-widest text-pink-600 uppercase">Our Price</span>
+                  <span className="text-pink-400 text-xs">‹</span>
+                </div>
+                <p className="text-3xl sm:text-4xl font-black text-pink-600">
+                  ₹{product.price.toLocaleString()}
+                </p>
+              </div>
+            </div>
+          ) : (
+            <p className="text-2xl sm:text-3xl text-brand-accent font-serif italic mb-6 sm:mb-8">₹{product.price.toLocaleString()}</p>
+          )}
           
           <div className="text-sm sm:text-base text-gray-600 font-light leading-relaxed mb-8 sm:mb-10 prose max-w-none" dangerouslySetInnerHTML={{ __html: product.description }} />
 

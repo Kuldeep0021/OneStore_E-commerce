@@ -124,10 +124,22 @@ const CategoryPage = () => {
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-gray-400 font-light">No Image</div>
                     )}
+                    {product.originalPrice && (
+                      <div className="absolute top-2 left-2 bg-pink-500 text-white text-xs font-black px-2 py-1 rounded-full">
+                        SALE
+                      </div>
+                    )}
                   </div>
                   <div className="text-center p-4 border-t border-gray-100">
                     <h3 className="text-sm sm:text-base uppercase tracking-widest text-brand-text mb-2 font-semibold truncate">{product.name}</h3>
-                    <p className="text-brand-accent font-sans font-bold text-lg">₹{product.price.toLocaleString()}</p>
+                    {product.originalPrice ? (
+                      <div className="flex items-center justify-center gap-2">
+                        <span className="text-gray-400 text-sm line-through">₹{product.originalPrice.toLocaleString()}</span>
+                        <span className="text-pink-600 font-black text-lg">₹{product.price.toLocaleString()}</span>
+                      </div>
+                    ) : (
+                      <p className="text-brand-accent font-sans font-bold text-lg">₹{product.price.toLocaleString()}</p>
+                    )}
                   </div>
                 </Link>
               ))}

@@ -38,26 +38,62 @@ const Home = () => {
   return (
     <div className="bg-white">
       {/* Full-width Hero Section */}
-      <section className="relative bg-gradient-to-r from-gray-900 to-black py-24 sm:py-32 w-full overflow-hidden">
+      <section className="relative bg-gradient-to-br from-pink-600 via-rose-500 to-pink-500 py-20 sm:py-28 w-full overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-sans font-bold text-white tracking-tight mb-4 sm:mb-6 leading-tight">
-            Welcome to OneStore
+          <div className="inline-block bg-white/10 text-white text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full mb-6 backdrop-blur-sm border border-white/20">
+            🎉 India's Best Toy Store
+          </div>
+          <h1 className="text-5xl sm:text-6xl md:text-7xl font-black text-white tracking-tight mb-4 leading-tight">
+            Giggle<span className="text-yellow-300">Toyz</span> <span className="text-3xl sm:text-4xl">🌟</span>
           </h1>
-          <p className="text-lg sm:text-xl text-gray-300 font-light tracking-wide max-w-2xl mx-auto mb-8 sm:mb-10 px-2">
-            Your one-stop shop for everything! Discover amazing deals on fresh groceries, electronics, books, and daily essentials.
+          <p className="text-lg sm:text-xl text-pink-100 font-light max-w-2xl mx-auto mb-3">
+            Fun, Safe & Affordable Toys for Every Child
           </p>
-          <a 
-            href="#categories" 
-            className="inline-block bg-white text-black font-semibold px-8 py-4 rounded-full shadow-lg hover:bg-gray-200 hover:scale-105 transition-all duration-300 w-full sm:w-auto"
-          >
-            Start Shopping
-          </a>
+          <p className="text-sm sm:text-base text-pink-200 font-light max-w-xl mx-auto mb-10">
+            Discover an amazing range of educational toys, games & gifts — at prices that beat every marketplace!
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a
+              href="#categories"
+              className="inline-block bg-white text-pink-600 font-black px-8 py-4 rounded-full shadow-lg hover:bg-pink-50 hover:scale-105 transition-all duration-300 w-full sm:w-auto text-sm uppercase tracking-widest"
+            >
+              Shop Now
+            </a>
+            <a
+              href="https://wa.me/919999155976"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-green-500 text-white font-bold px-8 py-4 rounded-full shadow-lg hover:bg-green-600 hover:scale-105 transition-all duration-300 w-full sm:w-auto text-sm uppercase tracking-widest"
+            >
+              💬 WhatsApp Us
+            </a>
+          </div>
         </div>
-        
         {/* Decorative background shapes */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-20">
           <div className="absolute -top-24 -left-24 w-64 h-64 sm:w-96 sm:h-96 rounded-full bg-white blur-3xl"></div>
-          <div className="absolute top-32 right-[-2rem] sm:right-12 w-48 h-48 sm:w-64 sm:h-64 rounded-full bg-white blur-3xl"></div>
+          <div className="absolute top-32 right-[-2rem] sm:right-12 w-48 h-48 sm:w-64 sm:h-64 rounded-full bg-yellow-300 blur-3xl"></div>
+          <div className="absolute -bottom-16 left-1/2 w-64 h-64 rounded-full bg-white blur-3xl"></div>
+        </div>
+      </section>
+
+      {/* Trust Badges */}
+      <section className="bg-white border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+            {[
+              { icon: '🚀', label: 'Fast Delivery', sub: 'Pan India' },
+              { icon: '✅', label: '100% Safe', sub: 'BIS Certified Toys' },
+              { icon: '💰', label: 'Best Prices', sub: 'Beat Any Marketplace' },
+              { icon: '📞', label: '24/7 Support', sub: 'Call & WhatsApp' },
+            ].map(badge => (
+              <div key={badge.label} className="py-3 px-2">
+                <div className="text-2xl mb-1">{badge.icon}</div>
+                <p className="text-xs font-bold text-gray-800 uppercase tracking-wide">{badge.label}</p>
+                <p className="text-xs text-gray-400 font-light">{badge.sub}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -112,10 +148,22 @@ const Home = () => {
                       loading="lazy"
                       className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110 p-4"
                     />
+                    {product.originalPrice && (
+                      <div className="absolute top-2 left-2 bg-pink-500 text-white text-xs font-black px-2 py-1 rounded-full">
+                        SALE
+                      </div>
+                    )}
                   </div>
                   <div className="text-center p-4 border-t border-gray-100">
                     <h3 className="text-sm sm:text-base uppercase tracking-widest text-brand-text mb-2 font-semibold truncate">{product.name}</h3>
-                    <p className="text-brand-accent font-sans font-bold text-lg">₹{product.price.toLocaleString()}</p>
+                    {product.originalPrice ? (
+                      <div className="flex items-center justify-center gap-2">
+                        <span className="text-gray-400 text-sm line-through">₹{product.originalPrice.toLocaleString()}</span>
+                        <span className="text-pink-600 font-black text-lg">₹{product.price.toLocaleString()}</span>
+                      </div>
+                    ) : (
+                      <p className="text-brand-accent font-sans font-bold text-lg">₹{product.price.toLocaleString()}</p>
+                    )}
                   </div>
                 </Link>
               ))}

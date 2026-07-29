@@ -13,6 +13,8 @@ const AdminProducts = () => {
     name: '',
     description: '',
     price: '',
+    originalPrice: '',
+    originalPriceBase: 'Price on Leading Marketplaces',
     category: '',
     stockQuantity: '',
     isActive: true
@@ -57,6 +59,8 @@ const AdminProducts = () => {
         name: product.name,
         description: product.description,
         price: product.price,
+        originalPrice: product.originalPrice || '',
+        originalPriceBase: product.originalPriceBase || 'Price on Leading Marketplaces',
         category: product.category?._id || '',
         stockQuantity: product.stockQuantity,
         isActive: product.isActive
@@ -65,7 +69,7 @@ const AdminProducts = () => {
     } else {
       setEditingProduct(null);
       setFormData({
-        name: '', description: '', price: '', category: categories[0]?._id || '', stockQuantity: 10, isActive: true
+        name: '', description: '', price: '', originalPrice: '', originalPriceBase: 'Price on Leading Marketplaces', category: categories[0]?._id || '', stockQuantity: 10, isActive: true
       });
       setExistingImages([]);
     }
@@ -125,6 +129,8 @@ const AdminProducts = () => {
       const payload = { 
         ...formData, 
         price: Number(formData.price),
+        originalPrice: formData.originalPrice ? Number(formData.originalPrice) : null,
+        originalPriceBase: formData.originalPriceBase || '',
         stockQuantity: Number(formData.stockQuantity),
         images: finalImages 
       };
@@ -248,9 +254,32 @@ const AdminProducts = () => {
                       <label className="block text-sm font-medium text-gray-700">Description</label>
                       <textarea rows="3" value={formData.description} onChange={(e) => setFormData({...formData, description: e.target.value})} className="mt-1 input-field" required></textarea>
                     </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700">Price (₹)</label>
-                      <input type="number" value={formData.price} onChange={(e) => setFormData({...formData, price: e.target.value})} className="mt-1 input-field" min="1" required />
+                    {/* Price Section */}
+                    <div className="sm:col-span-2 bg-blue-50 border border-blue-100 rounded-lg p-4">
+                      <p className="text-xs font-bold text-blue-700 uppercase tracking-wider mb-3">💰 Pricing — GiggleToyz vs Market</p>
+                      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+                        <div>
+                          <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Original Price (MRP / Market)</label>
+                          <div className="relative">
+                            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">₹</span>
+                            <input type="number" value={formData.originalPrice} onChange={(e) => setFormData({...formData, originalPrice: e.target.value})} className="mt-1 input-field pl-7" min="0" placeholder="e.g. 1499" />
+                          </div>
+                          <p className="text-xs text-gray-400 mt-1">Shown crossed-out on product page</p>
+                        </div>
+                        <div>
+                          <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Original Price Label</label>
+                          <input type="text" value={formData.originalPriceBase} onChange={(e) => setFormData({...formData, originalPriceBase: e.target.value})} className="mt-1 input-field" placeholder="Price on Leading Marketplaces" />
+                          <p className="text-xs text-gray-400 mt-1">Label below the market price</p>
+                        </div>
+                        <div>
+                          <label className="block text-xs font-semibold text-pink-600 uppercase tracking-wider mb-1">⭐ Our Price (GiggleToyz)</label>
+                          <div className="relative">
+                            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-pink-400 font-bold">₹</span>
+                            <input type="number" value={formData.price} onChange={(e) => setFormData({...formData, price: e.target.value})} className="mt-1 input-field pl-7 border-pink-300 focus:border-pink-500" min="1" required placeholder="e.g. 899" />
+                          </div>
+                          <p className="text-xs text-pink-400 mt-1">The price customers pay ✓</p>
+                        </div>
+                      </div>
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700">Category</label>

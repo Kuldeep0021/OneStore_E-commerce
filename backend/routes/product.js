@@ -51,14 +51,14 @@ router.get('/:id', async (req, res) => {
 });
 
 router.post('/', protect, admin, async (req, res) => {
-  const { name, description, price, images, category, stockQuantity, isActive } = req.body;
+  const { name, description, price, originalPrice, originalPriceBase, images, category, stockQuantity, isActive } = req.body;
   try {
     if (!name || !price || !category) return res.status(400).json({ message: 'Missing required fields' });
     if (price <= 0 || isNaN(price)) return res.status(400).json({ message: 'Price must be a positive number' });
     if (stockQuantity !== undefined && (isNaN(stockQuantity) || stockQuantity < 0)) return res.status(400).json({ message: 'Stock quantity must be a non-negative number' });
 
     const product = await Product.create({
-      name, description, price, images, category, stockQuantity, isActive
+      name, description, price, originalPrice: originalPrice || null, originalPriceBase: originalPriceBase || '', images, category, stockQuantity, isActive
     });
     res.status(201).json(product);
   } catch (error) {
@@ -72,13 +72,15 @@ router.put('/:id', protect, admin, async (req, res) => {
     const product = await Product.findById(req.params.id);
     if (!product) return res.status(404).json({ message: 'Product not found' });
 
-    const { name, description, price, images, category, stockQuantity, isActive } = req.body;
+    const { name, description, price, originalPrice, originalPriceBase, images, category, stockQuantity, isActive } = req.body;
     
     if (price !== undefined && price <= 0) return res.status(400).json({ message: 'Price must be positive' });
 
     product.name = name || product.name;
     product.description = description || product.description;
     product.price = price !== undefined ? price : product.price;
+    product.originalPrice = originalPrice !== undefined ? originalPrice : product.originalPrice;
+    product.originalPriceBase = originalPriceBase !== undefined ? originalPriceBase : product.originalPriceBase;
     product.images = images || product.images;
     product.category = category || product.category;
     product.stockQuantity = stockQuantity !== undefined ? stockQuantity : product.stockQuantity;
