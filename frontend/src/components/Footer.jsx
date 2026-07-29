@@ -41,8 +41,8 @@ const Footer = () => {
         {/* Newsletter Section */}
         <div className="flex flex-col md:flex-row justify-between items-center border-b border-gray-800 pb-16 mb-16">
           <div className="mb-8 md:mb-0 text-center md:text-left md:max-w-lg">
-            <h3 className="font-sans text-3xl font-bold mb-4">Join the GiggleToyz Family!</h3>
-            <p className="text-gray-400 font-light text-sm">Subscribe for exclusive deals, new arrivals, and fun toy picks for your kids.</p>
+            <h3 className="font-sans text-3xl font-bold mb-4">Join the OneStore Club</h3>
+            <p className="text-gray-400 font-light text-sm">Subscribe for exclusive deals, new arrivals, and the best prices on everything you need.</p>
           </div>
           <form onSubmit={handleSubscribe} className="w-full md:w-auto flex flex-col sm:flex-row gap-4 relative">
             <input 
@@ -64,11 +64,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           
           <div className="col-span-1 md:col-span-1">
-            <div className="text-2xl font-black mb-4">
-              <span className="text-white">Giggle</span><span className="text-pink-400">Toyz</span><span className="text-yellow-400"> 🌟</span>
-            </div>
+            <span className="font-sans text-2xl font-black tracking-tight mb-4 block text-white">OneStore</span>
             <p className="text-gray-400 text-sm font-light leading-relaxed">
-              India's favourite toy store. Fun, safe & affordable toys for every child — at prices that beat every marketplace!
+              Your one-stop destination for everything you need. Quality products delivered to your door at prices that beat every marketplace.
             </p>
           </div>
           
@@ -105,7 +103,7 @@ const Footer = () => {
         
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-500 text-xs font-light tracking-wide mb-4 md:mb-0">
-            &copy; {new Date().getFullYear()} GiggleToyz. All Rights Reserved.
+            &copy; {new Date().getFullYear()} OneStore. All Rights Reserved.
           </p>
           <div className="flex space-x-6">
             <a href="#" className="text-gray-500 hover:text-white transition-colors text-xs tracking-wider uppercase">Instagram</a>

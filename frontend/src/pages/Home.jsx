@@ -44,13 +44,13 @@ const Home = () => {
             
             {/* Left: Text */}
             <div className="flex-1 text-center lg:text-left">
-              <p className="text-pink-400 text-sm font-semibold uppercase tracking-widest mb-4">Trusted by thousands of families</p>
+              <p className="text-pink-400 text-sm font-semibold uppercase tracking-widest mb-4">Trusted by thousands of customers</p>
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black text-white leading-[1.05] mb-6">
-                Where Kids
-                <span className="block text-pink-400"> Come Alive!</span>
+                Everything
+                <span className="block text-pink-400"> You Need!</span>
               </h1>
               <p className="text-gray-400 text-base sm:text-lg leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0">
-                Toys that spark imagination, build skills, and make childhood unforgettable — at prices the big marketplaces can't match.
+                From daily essentials to special finds — shop thousands of products at prices that beat every marketplace.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
                 <a
@@ -73,9 +73,9 @@ const Home = () => {
             {/* Right: Stats block */}
             <div className="flex-shrink-0 grid grid-cols-2 gap-4 w-full lg:w-auto lg:min-w-[320px]">
               {[
-                { num: '500+', label: 'Toy varieties' },
+                { num: '1000+', label: 'Products' },
                 { num: '40%', label: 'Below market price' },
-                { num: '10k+', label: 'Happy families' },
+                { num: '10k+', label: 'Happy customers' },
                 { num: '5★', label: 'Customer rating' },
               ].map(stat => (
                 <div key={stat.label} className="bg-gray-900 border border-gray-800 rounded-xl p-5 text-center">
@@ -91,9 +91,8 @@ const Home = () => {
         <div className="border-t border-gray-800">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <div className="flex flex-wrap justify-center sm:justify-between items-center gap-4 text-xs text-gray-500">
-              <span>🚀 Free delivery on orders above ₹499</span>
-              <span>✅ BIS certified safe toys</span>
-              <span>💰 Best prices guaranteed</span>
+              <span>✅ Quality products guaranteed</span>
+              <span>💰 Best prices — beat any marketplace</span>
               <span>📞 Call before you pay — +91 9999155976</span>
             </div>
           </div>
