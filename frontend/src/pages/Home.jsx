@@ -37,65 +37,13 @@ const Home = () => {
 
   return (
     <div className="bg-white">
-      {/* Hero Section — Black */}
-      <section className="bg-black w-full">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
-          <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
-            
-            {/* Left: Text */}
-            <div className="flex-1 text-center lg:text-left">
-              <p className="text-pink-400 text-sm font-semibold uppercase tracking-widest mb-4">Trusted by thousands of customers</p>
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black text-white leading-[1.05] mb-6">
-                Everything
-                <span className="block text-pink-400"> You Need!</span>
-              </h1>
-              <p className="text-gray-400 text-base sm:text-lg leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0">
-                From daily essentials to special finds — shop thousands of products at prices that beat every marketplace.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
-                <a
-                  href="#categories"
-                  className="bg-pink-500 hover:bg-pink-600 text-white font-bold px-8 py-4 rounded-lg transition-colors text-sm"
-                >
-                  Shop Now
-                </a>
-                <a
-                  href="https://wa.me/919999155976"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="border border-gray-700 hover:border-gray-500 text-gray-300 hover:text-white font-medium px-8 py-4 rounded-lg transition-colors text-sm flex items-center justify-center gap-2"
-                >
-                  <span>💬</span> WhatsApp Us
-                </a>
-              </div>
-            </div>
-
-            {/* Right: Stats block */}
-            <div className="flex-shrink-0 grid grid-cols-2 gap-4 w-full lg:w-auto lg:min-w-[320px]">
-              {[
-                { num: '1000+', label: 'Products' },
-                { num: '40%', label: 'Below market price' },
-                { num: '10k+', label: 'Happy customers' },
-                { num: '5★', label: 'Customer rating' },
-              ].map(stat => (
-                <div key={stat.label} className="bg-gray-900 border border-gray-800 rounded-xl p-5 text-center">
-                  <div className="text-3xl font-black text-white mb-1">{stat.num}</div>
-                  <div className="text-xs text-gray-500 font-medium">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom strip */}
-        <div className="border-t border-gray-800">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <div className="flex flex-wrap justify-center sm:justify-between items-center gap-4 text-xs text-gray-500">
-              <span>Quality products guaranteed</span>
-              <span>Best prices — beat any marketplace</span>
-              <span>Call before you pay — +91 9999155976</span>
-            </div>
-          </div>
+      {/* Hero Section — OneStore */}
+      <section className="bg-black w-full min-h-[60vh] flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-black text-white tracking-tight">
+            OneStore
+          </h1>
+          <div className="mt-6 h-[2px] w-40 sm:w-56 bg-white mx-auto"></div>
         </div>
       </section>
 

@@ -46,7 +46,7 @@ const Navbar = () => {
           {/* Center: Brand Logo */}
           <div className="flex-1 flex justify-center">
             <Link to="/" className="flex items-center min-h-[44px]" onClick={closeMenu}>
-              <img src="/logo.png" alt="GiggleToyz" className="h-14 sm:h-16 w-auto object-contain" />
+              <img src="/logo.png" alt="GiggleToyz" className="h-20 sm:h-24 w-auto object-contain" />
             </Link>
           </div>
 
