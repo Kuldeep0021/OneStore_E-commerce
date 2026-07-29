@@ -91,9 +91,9 @@ const Home = () => {
         <div className="border-t border-gray-800">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <div className="flex flex-wrap justify-center sm:justify-between items-center gap-4 text-xs text-gray-500">
-              <span>✅ Quality products guaranteed</span>
-              <span>💰 Best prices — beat any marketplace</span>
-              <span>📞 Call before you pay — +91 9999155976</span>
+              <span>Quality products guaranteed</span>
+              <span>Best prices — beat any marketplace</span>
+              <span>Call before you pay — +91 9999155976</span>
             </div>
           </div>
         </div>
