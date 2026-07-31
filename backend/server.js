@@ -27,7 +27,7 @@ const app = express();
 app.set('trust proxy', 1);
 
 app.use(cors({
-  origin: ["https://giggletoyz.in", "https://www.giggletoyz.in"],
+  origin: ["https://giggletoyz.in", "https://www.giggletoyz.in", "https://one-store-e-commerce.vercel.app"],
   credentials: true
 }));
 app.use(express.json());
