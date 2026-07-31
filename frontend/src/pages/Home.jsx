@@ -58,19 +58,20 @@ const Home = () => {
         {loadingCats ? (
           <div className="flex justify-center py-10"><div className="animate-spin rounded-full h-10 w-10 border-b-2 border-brand-accent"></div></div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {categories.map((category) => (
-              <Link key={category._id} to={`/category/${category._id}`} className="group relative overflow-hidden block h-72 sm:h-[450px] rounded-lg">
+              <Link key={category._id} to={`/category/${category._id}`} className="group relative overflow-hidden block aspect-[4/5] sm:aspect-auto sm:h-[450px] rounded-xl sm:rounded-2xl">
                 <img 
                   src={getImageUrl(category.image)} 
                   alt={category.name} 
                   loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                {/* Gradient overlay on hover for better text readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="absolute bottom-6 sm:bottom-8 left-0 right-0 text-center px-4">
-                  <h3 className="text-white text-xl sm:text-2xl font-sans font-semibold tracking-widest uppercase">{category.name}</h3>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute bottom-3 sm:bottom-6 left-0 right-0 flex justify-center px-2">
+                  <div className="bg-white/20 backdrop-blur-md rounded-full px-3 py-1 sm:px-6 sm:py-2 max-w-[90%]">
+                    <h3 className="text-white text-xs sm:text-lg font-sans font-medium tracking-wider truncate">{category.name}</h3>
+                  </div>
                 </div>
               </Link>
             ))}
