@@ -9,7 +9,7 @@ const settingSchema = new mongoose.Schema({
   phone: {
     type: String,
     required: true,
-    default: '+91 9350996932',
+    default: '+91 9999155976',
   },
   address: {
     type: String,
