@@ -64,8 +64,8 @@ const Home = () => {
                 <img 
                   src={getImageUrl(category.image)} 
                   alt={category.name} 
-                  loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  fetchpriority="high"
+                  className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-100 transition-opacity duration-500"></div>
                 <div className="absolute bottom-3 sm:bottom-6 left-0 right-0 flex justify-center px-2">
@@ -97,7 +97,6 @@ const Home = () => {
                     <img 
                       src={getImageUrl(product.images[0])} 
                       alt={product.name} 
-                      loading="lazy"
                       className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110 p-4"
                     />
                     {product.originalPrice && (
