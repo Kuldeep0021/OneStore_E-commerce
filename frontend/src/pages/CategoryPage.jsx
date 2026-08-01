@@ -24,6 +24,10 @@ const CategoryPage = () => {
   const [selectedRange, setSelectedRange] = useState(0); // index into PRICE_RANGES
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
+
+  useEffect(() => {
     const fetchCategory = async () => {
       try {
         const { data } = await api.get('/categories');
@@ -132,7 +136,6 @@ const CategoryPage = () => {
                       <img
                         src={getImageUrl(product.images[0])}
                         alt={product.name}
-                        loading="lazy"
                         className="w-full h-full object-contain p-4 transition-transform duration-700 group-hover:scale-110"
                       />
                     ) : (
